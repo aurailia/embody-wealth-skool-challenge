@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Skool Community · 21-Day Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0a1018;
+  --night-2:#0f1923;
+  --plum-deep:#12202d;
+  --plum:#1b3242;
+  --plum-glass:rgba(30,58,78,0.42);
+  --lavender:#7fb5c4;
+  --lavender-soft:#aed6e0;
+  --lavender-bright:#9fcdd9;
+  --gold:#e89ec4;
+  --pink:#f0a8cd;
+  --pink-soft:#f6c4dd;
+  --lilac:#b9a8e0;
+  --lilac-soft:#d7cdee;
+  --text:#e8eef2;
+  --text-soft:#a7bcc8;
+  --text-dim:#6f8a99;
+  --cream:#f4ece0;
+  --line:rgba(127,181,196,0.16);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{
+  font-family:var(--sans);
+  color:var(--text);
+  /* ====== BACKGROUND IMAGE ======
+     Paste your image URL between the url('') quotes below.
+     Leave it empty to use the deep ink gradient fallback. */
+  --bg-image:url('background.jpg');
+  background:#0a1018;
+  background-image:
+    /* deep ink veil ON TOP of your image (keeps it rich + moody) */
+    linear-gradient(165deg, rgba(10,16,24,0.86) 0%, rgba(15,25,35,0.82) 40%, rgba(18,32,45,0.88) 100%),
+    /* your image */
+    var(--bg-image),
+    /* fallback ink wash if no image is set */
+    linear-gradient(165deg, #0a1018 0%, #0f1923 45%, #12202d 100%);
+  background-size:cover, cover, cover;
+  background-position:center, center, center;
+  background-repeat:no-repeat, no-repeat, no-repeat;
+  background-attachment:fixed, fixed, fixed;
+  -webkit-font-smoothing:antialiased;
+}
+/* soft sparkle, kept light-touch */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(circle at 8% 8%, rgba(240,168,205,0.12) 0%, rgba(240,168,205,0) 20%),
+    radial-gradient(1.5px 1.5px at 14% 26%, rgba(174,214,224,0.6) 50%, transparent 51%),
+    radial-gradient(1px 1px at 78% 14%, rgba(174,214,224,0.45) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 62% 60%, rgba(201,164,221,0.4) 50%, transparent 51%),
+    radial-gradient(1px 1px at 34% 74%, rgba(174,214,224,0.4) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 88% 66%, rgba(174,214,224,0.4) 50%, transparent 51%),
+    radial-gradient(1px 1px at 24% 50%, rgba(201,164,221,0.35) 50%, transparent 51%);
+  opacity:0.9;
+}
+
+.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 28px 80px}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:999}
+
+/* ---------- HEADER (sticky, dark frosted band) ---------- */
+header.masthead{
+  position:sticky;top:14px;z-index:50;
+  margin:14px 0 26px;
+  padding:22px 30px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;flex-wrap:wrap;
+  background:linear-gradient(120deg, #2c2148 0%, #221836 100%);
+  border:1px solid rgba(185,168,224,0.3);
+  border-radius:22px;
+  box-shadow:0 18px 50px rgba(60,40,95,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
+}
+.brand{display:flex;align-items:center;gap:20px}
+.brand-tile{
+  width:62px;height:62px;border-radius:18px;flex:0 0 auto;
+  background:linear-gradient(150deg, #f0a8cd 0%, #c9a4dd 48%, #7fb5c4 100%);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 22px rgba(20,49,64,0.5), inset 0 1px 2px rgba(255,255,255,0.5);
+}
+.brand-tile svg{width:30px;height:30px;color:#2a1f3d}
+.brand-text{display:flex;flex-direction:column;gap:5px}
+.brand-name{
+  font-family:var(--serif);font-weight:600;
+  font-size:38px;line-height:1.05;letter-spacing:0.3px;
+  background:linear-gradient(100deg, #f0a8cd 0%, #c9a4dd 40%, #aed6e0 78%, #7fb5c4 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.brand-name em{font-style:italic;font-weight:500}
+.brand-sub{
+  font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:3.5px;
+  text-transform:uppercase;color:var(--text-dim);
+}
+.masthead-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.ready-label{
+  font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--text-soft);
+}
+
+/* ---------- LAYOUT ---------- */
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:30px;align-items:start}
+
+/* ---------- PATH SIDEBAR (dark glass) ---------- */
+aside.path{
+  position:sticky;top:120px;
+  background:linear-gradient(160deg, #2a1f44 0%, #1f1638 100%);
+  border:1px solid rgba(185,168,224,0.24);
+  border-radius:24px;
+  padding:26px 22px 28px;
+  box-shadow:0 18px 50px rgba(60,40,95,0.30);
+}
+.path-eyebrow{
+  display:flex;align-items:center;gap:7px;
+  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:3px;
+  text-transform:uppercase;color:var(--lavender);margin-bottom:6px;padding-left:2px;
+}
+.path-title{
+  font-family:var(--serif);font-weight:600;font-size:23px;
+  margin-bottom:16px;padding-left:2px;line-height:1.1;
+  background:linear-gradient(100deg, #f0a8cd 0%, #c9a4dd 48%, #aed6e0 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.progress-track{height:5px;border-radius:3px;background:rgba(185,168,224,0.16);overflow:hidden;margin-bottom:8px}
+.progress-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--lavender),var(--lavender-bright));width:0%;transition:width .4s ease}
+.progress-label{font-family:var(--sans);font-size:11px;color:var(--text-dim);margin-bottom:20px;letter-spacing:.5px}
+
+.welcome-link{
+  display:flex;align-items:center;gap:13px;
+  padding:13px 12px;border-radius:14px;cursor:pointer;margin-bottom:14px;
+  background:linear-gradient(120deg, rgba(58,122,140,0.2), rgba(20,49,64,0.12));
+  border:1px solid rgba(185,168,224,0.28);transition:background .16s ease;
+}
+.welcome-link:hover{background:linear-gradient(120deg, rgba(58,122,140,0.32), rgba(20,49,64,0.2))}
+.welcome-link.active{
+  background:linear-gradient(120deg, rgba(127,181,196,0.45), rgba(58,122,140,0.32));
+  box-shadow:0 4px 16px rgba(0,0,0,0.28);
+}
+.welcome-spark{
+  width:34px;height:34px;flex:0 0 auto;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  background:linear-gradient(150deg,#9fcdd9,#2d6577);color:#2a1f3d;
+  box-shadow:0 4px 12px rgba(20,49,64,0.45);
+}
+.welcome-text{display:flex;flex-direction:column;gap:1px}
+.welcome-link .day-num{color:var(--lavender)}
+.welcome-link .day-name{font-family:var(--serif);font-weight:600;font-size:18px;color:#fff;line-height:1.15}
+
+.phase{margin-bottom:6px}
+.phase-head{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  gap:10px;background:none;border:none;cursor:pointer;
+  padding:10px 8px;border-radius:12px;text-align:left;
+  transition:background .18s ease;
+}
+.phase-head:hover{background:rgba(185,168,224,0.1)}
+.phase-title-wrap{display:flex;flex-direction:column;gap:2px}
+.phase-kicker{
+  font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--lavender);
+}
+.phase-name{font-family:var(--serif);font-weight:600;font-size:20px;color:var(--text);line-height:1.1}
+.phase-caret{
+  width:18px;height:18px;flex:0 0 auto;color:var(--lavender);opacity:.75;
+  transition:transform .22s ease;
+}
+.phase.collapsed .phase-caret{transform:rotate(-90deg)}
+.phase-days{
+  position:relative;margin:2px 0 8px 14px;padding-left:18px;
+  overflow:hidden;transition:max-height .28s ease, opacity .22s ease;
+}
+.phase.collapsed .phase-days{max-height:0 !important;opacity:0;margin-bottom:0}
+.phase-days::before{
+  content:"";position:absolute;left:5px;top:10px;bottom:10px;width:1.5px;
+  background:linear-gradient(180deg, rgba(185,168,224,0.55), rgba(185,168,224,0.15));
+}
+.day-link{
+  position:relative;display:flex;flex-direction:column;gap:2px;
+  padding:9px 10px 9px 6px;border-radius:11px;cursor:pointer;
+  transition:background .16s ease;
+}
+.day-link:hover{background:rgba(185,168,224,0.1)}
+.day-link.active{
+  background:linear-gradient(120deg, rgba(58,122,140,0.42), rgba(20,49,64,0.3));
+  box-shadow:0 4px 16px rgba(0,0,0,0.28);
+}
+.day-link::before{
+  content:"";position:absolute;left:-17px;top:14px;width:11px;height:11px;border-radius:50%;
+  background:#241a3a;border:1.5px solid var(--lavender);
+  box-shadow:0 0 0 3px rgba(28,20,48,0.9);
+}
+.day-link.active::before{
+  background:radial-gradient(circle at 35% 30%, #fff, var(--lavender));
+  box-shadow:0 0 12px rgba(185,168,224,0.95), 0 0 0 3px rgba(28,20,48,0.9);
+}
+.day-link.done::before{background:var(--lavender);border-color:var(--lavender)}
+.day-num{font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim)}
+.day-link.active .day-num{color:var(--lavender-soft)}
+.day-name{font-family:var(--serif);font-weight:500;font-size:18px;color:var(--text-soft);line-height:1.18}
+.day-link.active .day-name{color:#fff}
+.day-link.locked{opacity:.45}
+.day-link.locked .day-name{font-style:italic}
+
+/* ---------- CONTENT STAGE (on dark) ---------- */
+main.stage{
+  background:linear-gradient(165deg, #271c42 0%, #1c1338 100%);
+  border:1px solid rgba(185,168,224,0.2);
+  border-radius:28px;
+  padding:48px 54px 56px;
+  box-shadow:0 24px 70px rgba(60,40,95,0.34);
+  min-height:560px;
+}
+.day-topline{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.day-meta{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim)}
+.video-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--lavender-soft);background:rgba(185,168,224,0.12);
+  border:1px solid rgba(185,168,224,0.28);border-radius:30px;padding:8px 16px;cursor:pointer;
+  transition:background .15s ease;
+}
+.video-chip:hover{background:rgba(185,168,224,0.2)}
+.video-chip svg{width:15px;height:15px}
+
+.day-headrow{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:14px;flex-wrap:wrap}
+.day-title{
+  font-family:var(--serif);font-weight:600;font-size:56px;line-height:1.04;
+  letter-spacing:0.3px;display:flex;align-items:center;gap:14px;
+  background:linear-gradient(105deg, #f0a8cd 0%, #c9a4dd 34%, #9fcdd9 66%, #7fb5c4 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  filter:drop-shadow(0 2px 20px rgba(185,120,210,0.25));
+}
+.day-title em{font-style:italic;font-weight:500}
+.mark-pill{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--sans);font-size:13px;font-weight:600;color:var(--text-soft);
+  background:rgba(185,168,224,0.08);border:1px solid rgba(185,168,224,0.3);
+  border-radius:30px;padding:9px 18px;cursor:pointer;transition:all .15s ease;
+}
+.mark-pill:hover{background:rgba(185,168,224,0.16)}
+.mark-pill .ring{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--text-soft);flex:0 0 auto}
+.mark-pill.done{color:#fff;border-color:var(--lavender);background:rgba(58,122,140,0.28)}
+.mark-pill.done .ring{background:var(--lavender);border-color:var(--lavender);box-shadow:0 0 10px rgba(185,168,224,0.7)}
+.day-sub{
+  font-family:var(--serif);font-style:italic;font-size:23px;color:var(--text-soft);
+  margin-bottom:30px;
+}
+
+/* activation slot */
+.activation{
+  background:linear-gradient(135deg, #1b3242 0%, #2d6577 100%);
+  border-radius:18px;padding:24px 26px;display:flex;align-items:center;gap:20px;
+  margin-bottom:16px;box-shadow:0 14px 34px rgba(80,62,130,0.5);
+}
+.play-btn{
+  width:66px;height:66px;border-radius:50%;flex:0 0 auto;
+  background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.55);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:transform .15s ease, background .15s ease;
+}
+.play-btn:hover{transform:scale(1.05);background:rgba(255,255,255,0.3)}
+.play-btn svg{width:22px;height:22px;color:#fff;margin-left:3px}
+.activation-text .label{
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(255,255,255,0.82);margin-bottom:4px;
+}
+.activation-text .title{font-family:var(--serif);font-weight:600;font-size:26px;color:#fff;line-height:1.1}
+.activation-text .note{font-family:var(--sans);font-size:13px;color:rgba(255,255,255,0.82);margin-top:3px}
+
+/* audio-player activation (real MP3) */
+.audio-player{
+  display:flex;align-items:center;gap:20px;
+  background:linear-gradient(135deg, #1b3242 0%, #2d6577 100%);
+  border-radius:18px;padding:22px 26px;margin-bottom:16px;
+  box-shadow:0 14px 34px rgba(80,62,130,0.5);
+}
+.audio-body{flex:1 1 auto;min-width:0}
+.audio-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:3px}
+.audio-label{
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(255,255,255,0.82);
+}
+.audio-time{font-family:var(--sans);font-size:12.5px;color:rgba(255,255,255,0.85);font-variant-numeric:tabular-nums}
+.audio-title{font-family:var(--serif);font-weight:600;font-size:25px;color:#fff;line-height:1.1;margin-bottom:12px}
+.audio-track{
+  height:7px;border-radius:4px;background:rgba(255,255,255,0.25);cursor:pointer;position:relative;overflow:hidden;
+}
+.audio-fill{height:100%;width:0%;border-radius:4px;background:#fff;box-shadow:0 0 10px rgba(255,255,255,0.6);transition:width .1s linear}
+
+/* video-style activation (meditation embed) */
+.activation-head{margin-bottom:14px}
+.activation-head .label{
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--lavender);margin-bottom:5px;
+}
+.activation-head .title{font-family:var(--serif);font-weight:600;font-size:27px;color:#fff;line-height:1.1}
+.act-video{margin-bottom:14px}
+.chapters{list-style:none;margin:0 0 34px;padding:16px 20px;
+  background:rgba(185,168,224,0.08);border:1px solid rgba(185,168,224,0.2);border-radius:14px}
+.chapters li{display:flex;align-items:baseline;gap:14px;padding:6px 0;font-family:var(--sans)}
+.chapters li+li{border-top:1px solid rgba(185,168,224,0.12)}
+.chap-time{flex:0 0 auto;font-size:12.5px;font-weight:700;letter-spacing:1px;color:var(--lavender);font-variant-numeric:tabular-nums;min-width:42px}
+.chap-label{font-size:14.5px;color:var(--text-soft)}
+.chapters.seekable li{transition:background .14s ease;border-radius:8px;margin:0 -8px;padding-left:8px;padding-right:8px}
+.chapters.seekable li:hover{background:rgba(185,168,224,0.14)}
+.chapters.seekable li:hover .chap-label{color:var(--text)}
+
+/* teaching video inside a tab */
+.teach-video{margin:0 0 26px}
+
+/* numbered ritual steps */
+.ritual-intro{font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--lavender-soft);font-style:italic;margin-bottom:14px}
+.ritual{list-style:none;margin:0 0 26px;padding:0;counter-reset:none}
+.ritual li{display:flex;gap:16px;padding:16px 0;border-top:1px solid rgba(185,168,224,0.14);
+  font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--text)}
+.ritual li:first-child{border-top:none}
+.ritual li strong{color:#fff;font-weight:600}
+.ritual li em{font-style:italic;color:var(--lavender-soft)}
+.ritual-n{
+  flex:0 0 auto;width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin-top:2px;
+  font-family:var(--sans);font-weight:700;font-size:15px;color:#fff;
+  background:linear-gradient(150deg,#2d6577,#143140);
+  box-shadow:0 4px 12px rgba(20,49,64,0.4);
+}
+.share-note{
+  font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;color:var(--text);
+  background:linear-gradient(160deg, rgba(240,168,205,0.18), rgba(144,121,196,0.16));
+  border:1px solid rgba(240,168,205,0.4);border-left:5px solid #e89ec4;
+  border-radius:16px;padding:24px 28px;margin:24px 0;
+  box-shadow:0 10px 30px rgba(45,101,119,0.25);
+}
+.share-note::before{
+  content:"\2729  SHARE IN THE COMMUNITY";
+  display:block;font-family:var(--sans);font-style:normal;font-size:12px;font-weight:700;
+  letter-spacing:2px;color:#e89ec4;margin-bottom:10px;
+}
+.ground-note{
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--text-soft);
+  background:rgba(185,168,224,0.06);border:1px dashed rgba(185,168,224,0.28);
+  border-radius:14px;padding:16px 20px;margin-bottom:18px;
+}
+.share-note a{
+  color:#f3b8d8;font-weight:700;font-style:normal;
+  border-bottom:2px solid rgba(240,168,205,0.6);
+  transition:border-color .15s ease, color .15s ease;
+}
+.share-note a:hover{color:#fff;border-bottom-color:#fff}
+.body-copy a, .ground-note a{
+  color:var(--lavender-bright);font-weight:600;text-decoration:none;
+  border-bottom:1px solid rgba(127,181,196,0.4);
+  transition:border-color .15s ease, color .15s ease;
+}
+.body-copy a:hover, .ground-note a:hover{color:#fff;border-bottom-color:#fff}
+
+/* abraham hicks rampage card (external youtube) */
+.rampage-card{
+  background:linear-gradient(160deg, rgba(58,122,140,0.16), rgba(20,49,64,0.1));
+  border:1px solid rgba(185,168,224,0.26);border-radius:18px;
+  padding:22px 24px;margin:6px 0 26px;
+}
+.rampage-label{
+  font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--lavender-soft);margin-bottom:8px;
+}
+.rampage-note{
+  font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--text-soft);margin-bottom:16px;
+}
+.rampage-card .video-frame{margin-bottom:0}
+
+/* notice callout (teaching) */
+.notice{
+  background:linear-gradient(135deg, rgba(201,164,221,0.14), rgba(240,168,205,0.06));
+  border:1px solid rgba(201,164,221,0.32);border-radius:16px;
+  padding:22px 26px;margin:6px 0 8px;
+}
+.notice-label{
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--gold);margin-bottom:8px;
+}
+.notice p{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--text);margin:0}
+
+/* reflection prompt + journal */
+.prompt-card{
+  background:linear-gradient(160deg, rgba(58,122,140,0.14), rgba(20,49,64,0.08));
+  border:1px solid rgba(185,168,224,0.26);border-radius:18px;padding:26px 28px;
+}
+.prompt-q{
+  font-family:var(--sans);font-size:17px;line-height:1.55;color:#fff;
+  margin-bottom:18px;font-weight:500;
+}
+.journal{
+  width:100%;min-height:140px;resize:none;overflow:hidden;
+  background:rgba(14,10,26,0.4);border:1px solid rgba(185,168,224,0.24);
+  border-radius:12px;padding:16px 18px;color:var(--text);
+  font-family:var(--sans);font-size:15.5px;line-height:1.6;
+  transition:border-color .15s ease;
+}
+.journal:focus{outline:none;border-color:var(--lavender)}
+.journal::placeholder{color:var(--text-dim);font-style:italic}
+.journal-saved{
+  font-family:var(--sans);font-size:12px;color:var(--lavender);
+  margin-top:8px;height:16px;opacity:0;transition:opacity .25s ease;letter-spacing:.5px;
+}
+.journal-saved.show{opacity:1}
+
+/* gratitude journal (5 rows: grateful for + why) */
+.gratitude-journal{display:flex;flex-direction:column;gap:14px}
+.grat-row{display:flex;gap:14px;align-items:flex-start}
+.grat-n{
+  flex:0 0 auto;width:30px;height:30px;border-radius:50%;margin-top:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-weight:700;font-size:14px;color:#fff;
+  background:linear-gradient(150deg,#2d6577,#143140);
+  box-shadow:0 4px 12px rgba(20,49,64,0.4);
+}
+.grat-fields{flex:1 1 auto;display:flex;flex-direction:column;gap:6px;min-width:0}
+.journal-line{
+  width:100%;background:rgba(14,10,26,0.4);border:1px solid rgba(185,168,224,0.24);
+  border-radius:12px;padding:13px 16px;color:var(--text);
+  font-family:var(--sans);font-size:15.5px;transition:border-color .15s ease;
+}
+.journal-line:focus{outline:none;border-color:var(--lavender)}
+.journal-line::placeholder{color:var(--text-dim)}
+.grat-why{min-height:46px !important;font-size:14.5px !important;color:var(--text-soft) !important}
+
+/* affirmation */
+.affirmation{
+  background:linear-gradient(160deg, rgba(58,122,140,0.16), rgba(20,49,64,0.1));
+  border:1px solid rgba(185,168,224,0.26);border-radius:20px;
+  padding:38px 40px;text-align:center;
+}
+.affirmation p{
+  font-family:var(--serif);font-size:25px;line-height:1.4;color:var(--text);
+  margin-bottom:14px;
+}
+.affirmation p:last-child{margin-bottom:0}
+.affirm-seal{
+  font-style:italic;font-size:27px !important;margin-top:8px !important;
+  background:linear-gradient(105deg, #f0a8cd, #c9a4dd, #7fb5c4);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+
+.listen-hint{
+  display:flex;align-items:center;gap:11px;
+  background:rgba(185,168,224,0.1);border:1px solid rgba(185,168,224,0.24);
+  border-radius:14px;padding:13px 18px;margin-bottom:34px;
+  font-family:var(--sans);font-size:14px;color:var(--text-soft);
+}
+.listen-hint svg{width:17px;height:17px;flex:0 0 auto;color:var(--lavender)}
+
+/* tabs */
+.tabs{display:flex;gap:0;border:1px solid rgba(185,168,224,0.2);border-radius:16px;padding:6px;margin-bottom:32px;flex-wrap:wrap;background:rgba(185,168,224,0.06)}
+.tab{
+  font-family:var(--sans);font-size:15px;font-weight:600;color:var(--text-soft);
+  background:none;border:none;cursor:pointer;padding:11px 22px;border-radius:11px;
+  display:inline-flex;align-items:center;gap:8px;transition:all .15s ease;
+}
+.tab:hover{color:var(--text)}
+.tab.active{
+  color:#fff;
+  background:linear-gradient(120deg, rgba(58,122,140,0.95), rgba(45,101,119,0.9));
+  box-shadow:0 4px 14px rgba(20,49,64,0.5);
+}
+.tab .ico{font-size:15px}
+.panel{display:none;animation:fade .3s ease}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.body-copy{font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--text)}
+.body-copy.lead{font-style:italic;color:var(--text-soft);margin-bottom:22px}
+.body-copy p{margin-bottom:20px}
+
+/* loom video embed */
+.video-frame{
+  position:relative;width:100%;padding-bottom:var(--vid-ratio, 56.25%);height:0;
+  border-radius:18px;overflow:hidden;margin-bottom:30px;
+  box-shadow:0 16px 40px rgba(0,0,0,0.35);border:1px solid rgba(185,168,224,0.25);
+  background:#000;
+}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* human design chart card */
+.hd-card{
+  background:linear-gradient(135deg, rgba(58,122,140,0.22), rgba(20,49,64,0.16));
+  border:1px solid rgba(185,168,224,0.32);border-radius:18px;
+  padding:26px 28px;margin:8px 0 28px;
+}
+.hd-card-label{
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--lavender);margin-bottom:8px;
+}
+.hd-card-text{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--text);margin-bottom:18px}
+.hd-btn{
+  display:inline-block;font-family:var(--sans);font-size:14.5px;font-weight:600;color:#fff;
+  background:linear-gradient(135deg,#2a5566,#3a7a8c);text-decoration:none;
+  border-radius:12px;padding:13px 24px;box-shadow:0 8px 20px rgba(141,118,191,0.4);
+  transition:transform .15s ease;
+}
+.hd-btn:hover{transform:translateY(-1px)}
+
+/* cream pull-quote that pops on dark */
+.pullquote{
+  background:linear-gradient(160deg, #f8f4ec 0%, #efe7da 100%);
+  border-radius:18px;padding:34px 40px;margin:8px 0 28px;
+  position:relative;box-shadow:0 16px 40px rgba(0,0,0,0.3);
+}
+.pullquote::before{
+  content:'\201C';position:absolute;top:6px;left:22px;
+  font-family:var(--serif);font-size:64px;color:var(--lavender);opacity:.6;
+}
+.pullquote p{font-family:var(--serif);font-style:italic;font-size:25px;line-height:1.4;color:#1a2630;padding-left:34px}
+
+.placeholder{
+  border:1.5px dashed rgba(185,168,224,0.32);border-radius:16px;
+  padding:40px 34px;text-align:center;color:var(--text-soft);
+  font-family:var(--sans);font-size:14.5px;line-height:1.6;
+  background:rgba(185,168,224,0.05);
+}
+.placeholder strong{color:var(--lavender-soft);font-weight:600}
+
+/* footer nav */
+.day-foot{display:flex;justify-content:space-between;align-items:center;margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
+.foot-complete{display:flex;justify-content:center;margin-top:40px}
+.foot-complete .mark-pill{margin-top:0}
+.nav-btn{
+  font-family:var(--sans);font-size:14px;font-weight:600;color:var(--lavender-soft);
+  background:rgba(185,168,224,0.1);border:1px solid rgba(185,168,224,0.28);
+  border-radius:12px;padding:11px 20px;cursor:pointer;transition:background .15s ease;
+}
+.nav-btn:hover{background:rgba(185,168,224,0.2)}
+.nav-btn:disabled{opacity:.35;cursor:default}
+
+.sig{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--text-soft);margin-top:36px;text-align:right}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:880px){
+  .wrap{padding:0 16px 60px}
+  .layout{grid-template-columns:minmax(0,1fr)}
+  aside.path{position:static;margin-bottom:22px}
+  main.stage{padding:34px 24px 40px}
+  .day-title{font-size:40px}
+  .brand-name{font-size:30px}
+  .masthead{padding:18px 22px;position:static;top:auto}
+  .day-headrow{flex-direction:column}
+}
+/* ---------- challenge additions ---------- */
+/* membership door cards */
+.doors{display:flex;flex-direction:column;gap:16px;margin:6px 0 26px}
+.door{
+  background:linear-gradient(160deg, #ffffff 0%, #f6f1fa 100%);
+  border:1px solid rgba(127,181,196,0.3);border-radius:18px;padding:24px 26px;
+  box-shadow:0 10px 30px rgba(20,40,55,0.25);
+}
+.door-name{
+  font-family:var(--serif);font-weight:600;font-size:26px;line-height:1.1;margin-bottom:8px;
+  background:linear-gradient(105deg, #d56aa0 0%, #9079c4 50%, #2d6577 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:#2d6577;
+}
+.door-tag{
+  display:inline-block;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:#7a5f99;background:rgba(144,121,196,0.12);
+  border:1px solid rgba(144,121,196,0.3);border-radius:30px;padding:5px 14px;margin-bottom:12px;
+}
+.door p{font-family:var(--sans);font-size:16px;line-height:1.6;color:#3a4650;margin:0}
+
+/* artifact call-to-action card */
+.artifact-cta{
+  background:linear-gradient(160deg, #ffffff 0%, #f6f1fa 100%);
+  border:1px solid rgba(127,181,196,0.3);
+  border-radius:20px;padding:34px 36px;text-align:center;margin:8px 0 26px;
+  box-shadow:0 16px 40px rgba(20,40,55,0.35);
+}
+.artifact-cta .label{
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:#7a5f99;margin-bottom:8px;
+}
+.artifact-cta .title{
+  font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.1;margin-bottom:12px;
+  background:linear-gradient(105deg, #d56aa0 0%, #9079c4 45%, #2d6577 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:#2d6577;
+}
+.artifact-cta p{font-family:var(--sans);font-size:15.5px;line-height:1.6;color:#3a4650;margin:0 auto 22px;max-width:520px}
+.artifact-btn{
+  display:inline-block;font-family:var(--sans);font-size:15.5px;font-weight:700;letter-spacing:.3px;
+  color:#fff;background:linear-gradient(135deg,#9079c4 0%,#2d6577 100%);text-decoration:none;
+  border-radius:30px;padding:15px 38px;box-shadow:0 10px 26px rgba(45,101,119,0.4);
+  transition:transform .15s ease, box-shadow .2s ease;
+}
+.artifact-btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(45,101,119,0.55)}
+.artifact-btn.soon{background:#e4dcec;color:#7a5f99;box-shadow:none;cursor:default;border:1px solid rgba(127,181,196,0.4)}
+
+/* video placeholder (loom not yet added) */
+.vid-placeholder{background:linear-gradient(160deg, rgba(127,181,196,0.18), rgba(45,101,119,0.12)) !important;display:flex;align-items:center;justify-content:center}
+.vid-ph-inner{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-style:italic;font-size:21px;color:var(--lavender-soft);
+}
+
+/* today's to-do checklist */
+/* in-tab section heading */
+.section-h{
+  font-family:var(--serif);font-weight:600;font-size:26px;color:#fff;
+  margin:28px 0 4px;line-height:1.1;
+}
+
+.todo-list{display:flex;flex-direction:column;gap:12px;margin:6px 0 24px}
+.todo-item{
+  display:flex;align-items:flex-start;gap:14px;cursor:pointer;
+  background:linear-gradient(160deg, #ffffff 0%, #f6f1fa 100%);
+  border:1px solid rgba(127,181,196,0.3);border-radius:14px;padding:16px 18px;
+  box-shadow:0 6px 18px rgba(20,40,55,0.18);
+  transition:transform .12s ease, box-shadow .15s ease;
+}
+.todo-item:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(20,40,55,0.24)}
+.todo-item input{position:absolute;opacity:0;width:0;height:0}
+.todo-box{
+  flex:0 0 auto;width:24px;height:24px;border-radius:7px;margin-top:1px;
+  border:1.5px solid rgba(144,121,196,0.55);background:#fff;
+  display:flex;align-items:center;justify-content:center;transition:all .15s ease;
+}
+.todo-box::after{
+  content:"";width:11px;height:6px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;
+  transform:rotate(-45deg) scale(0);transition:transform .15s ease;margin-top:-2px;
+}
+.todo-item input:checked + .todo-box{background:linear-gradient(135deg,#9079c4,#2d6577);border-color:#7a64ad;box-shadow:0 0 12px rgba(144,121,196,0.5)}
+.todo-item input:checked + .todo-box::after{transform:rotate(-45deg) scale(1)}
+.todo-text{font-family:var(--sans);font-size:16px;line-height:1.5;color:#3a4650;transition:color .15s ease}
+.todo-item input:checked ~ .todo-text{color:#9aa0ac;text-decoration:line-through}
+.todo-item input:focus-visible + .todo-box{outline:2px solid #9079c4;outline-offset:2px}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="brand">
+      <div class="brand-tile">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.9 6.1L20 10l-6.1 1.9L12 18l-1.9-6.1L4 10l6.1-1.9z"/></svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-name">Embody Wealth · <em>Build Your Skool</em></div>
+        <div class="brand-sub">The 21-Day Challenge</div>
+      </div>
+    </div>
+    <div class="masthead-right">
+      <div class="ready-label">Begin When You're Ready</div>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- PATH -->
+    <aside class="path">
+      <div class="path-eyebrow">✦ The Build</div>
+      <div class="path-title">Your 21-Day Community Build</div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0% complete</div>
+      <div id="pathNav"></div>
+    </aside>
+
+    <!-- STAGE -->
+    <main class="stage" id="stage"></main>
+
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATA — three phases of seven.
+   Each day declares its own tabs (flex). Add content per day.
+   Phase names + day titles are placeholders you can rename.
+   ============================================================ */
+const PHASES = [
+  {
+    kicker:"Week One",
+    name:"Build It",
+    days:[
+      {n:1, name:"The Foundation", title:"", sub:"", tabs:[]},
+      {n:2, name:"Name It, Claim It", title:"", sub:"", tabs:[]},
+      {n:3, name:"Set the Frequency", title:"", sub:"", tabs:[]},
+      {n:4, name:"Map Your Classrooms", title:"", sub:"", tabs:[]},
+      {n:5, name:"About and Welcome", title:"", sub:"", tabs:[]},
+      {n:6, name:"Build Day", title:"", sub:"", tabs:[]},
+      {n:7, name:"Week One Integration", title:"", sub:"", tabs:[]}
+    ]
+  },
+  {
+    kicker:"Week Two",
+    name:"Fill It",
+    days:[
+      {n:8, name:"What Goes Inside", title:"", sub:"", tabs:[]},
+      {n:9, name:"The Welcome Journey", title:"", sub:"", tabs:[]},
+      {n:10, name:"Your First Artifact", title:"", sub:"", tabs:[]},
+      {n:11, name:"The Micro Offer", title:"", sub:"", tabs:[]},
+      {n:12, name:"Magnetic Messaging", title:"", sub:"", tabs:[]},
+      {n:13, name:"The Frequency Content", title:"", sub:"", tabs:[]},
+      {n:14, name:"Fill Day", title:"", sub:"", tabs:[]}
+    ]
+  },
+  {
+    kicker:"Week Three",
+    name:"Promote It",
+    days:[
+      {n:15, name:"Who You're Calling In", title:"", sub:"", tabs:[]},
+      {n:16, name:"Your Invitation", title:"", sub:"", tabs:[]},
+      {n:17, name:"Where They Already Are", title:"", sub:"", tabs:[]},
+      {n:18, name:"The Frequency of Being Seen", title:"", sub:"", tabs:[]},
+      {n:19, name:"Founding Member Offer", title:"", sub:"", tabs:[]},
+      {n:20, name:"Handle the Quiet", title:"", sub:"", tabs:[]},
+      {n:21, name:"Open the Doors", title:"", sub:"", tabs:[]}
+    ]
+  }
+];
+
+/* ---- Day 1 — The Foundation, Then Your Plan ---- */
+PHASES[0].days[0] = {
+  n:1, name:"The Foundation",
+  title:"The Foundation, Then Your Plan",
+  sub:"Why community, the two ways to build one, and the tool that hands you your plan today.",
+  loom:"LOOM_PLACEHOLDER",
+  tabs:[
+    {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
+      <div class="body-copy">
+        <p>Hello beautiful souls.</p>
+        <p class="lead">I'm so excited to start this challenge with you. Here's what we're doing. You get to see behind the scenes as I build my own membership, right here, in real time.</p>
+        <p>I'm not coming at you as someone who's been on Skool for years with it all figured out. I'm coming from a place of sharing what I've learned from watching what others are doing, and what I've been implementing in my own membership recently. I'm learning as I go. But I'm here to lead you, support you, and share everything I'm learning along the way.</p>
+      </div>
+      <div class="body-copy">
+        <p>So let's get into why I'm so obsessed with memberships.</p>
+        <p>When you build a community, you build recurring income. Money that comes in every month without you chasing one-on-one clients constantly. You're not starting from zero every time you want to get paid. You're building a space where you get to share all your gifts, your way, with your people. And once they're in your world, there are infinite ways to help them one-on-one from there.</p>
+        <p>I've done the Facebook version. I built a space I genuinely loved and the people in it were everything. But Facebook was too distracting. The noise, the scroll, the everything-else competing for attention. So I went looking for a platform I could move my members to, somewhere that actually held the frequency I wanted. I couldn't find the right one for a long time. Then Skool started changing how the platform works, and I saw it. The possibilities opened up.</p>
+      </div>
+      <div class="pullquote"><p>Here's what I've always believed. A low-ticket membership is the key. It's the doorway.</p></div>
+      <div class="body-copy">
+        <p>I had a program called Casa Cashflow, where you build a simple journey for your client starting with one micro offer. A small, easy yes. And when you've got a community, that micro offer gets to live inside it. Someone buys your micro offer and they're automatically dropped into your world. Now they're not a one-time buyer. They're in the room.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">You're the host, not the guru</div>
+        <p>Your job here isn't to be the guru with all the answers. The guru says look at me, I'm perfect, I know everything. And the second that person takes a day off, the whole thing falls apart because everyone was only connected to the guru. You're not building that. You're the host. Think about the difference between handing your friends a fifty-page slideshow and making them sit through it, versus throwing a barbecue. Music on, drinks out, people talking to each other. Your only job as the host is to set the vibe and create the space where your people connect. Not just with you. With each other.</p>
+      </div>
+      <div class="body-copy">
+        <p>And here's the thing about Skool. It's not a course platform that happens to have a community bolted on. It's a community platform that has courses inside it to give your people value. The community is the point. The courses serve it.</p>
+      </div>`},
+    {id:"types", label:"The Two Doors", icon:"\u{1F4AB}", content:`
+      <div class="body-copy">
+        <p>Let's get clear on the types of memberships we're talking about, because the words matter. There are two. A freemium and a paid.</p>
+      </div>
+      <div class="doors">
+        <div class="door">
+          <div class="door-name">Freemium</div>
+          <span class="door-tag">Free level + two upgrades</span>
+          <p>A freemium has a free level. People come in free because they saw something you were promoting. They join, they look around, and while they're in there they start to see what you offer for an upgrade. A freemium has two upgrades. A low-ticket standard, somewhere between five and eight dollars a month. And a premium, somewhere between twenty-seven and ninety-nine a month.</p>
+        </div>
+        <div class="door">
+          <div class="door-name">Paid</div>
+          <span class="door-tag">Trial door + levels</span>
+          <p>A paid community has no free level. But Skool now offers a seven-day trial, so people still get to come in and experience it before they pay. By the end of the trial, they pay. So when you're promoting a paid community, you're promoting a micro offer to bring them in to try it out. A paid community still has levels too. A standard around five to eight, and a premium from twenty-seven to ninety-nine.</p>
+        </div>
+      </div>
+      <div class="body-copy">
+        <p>So both can have a premium. The real difference is the door. One opens to a free level. The other opens to a trial.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">Which one's right for you</div>
+        <p>If you're new, or you don't have a big following yet, I'd go freemium. Put two or three things in the free level. A challenge. Some audios. Maybe a free three-day workshop. Things you'd happily give to bring people into your world. The difference now is you're bringing them into a safe, controlled space instead of losing them in the noise of Facebook. They come in, they experience your course and your audios, and from there they're warm. They'll either uplevel to standard or go all the way to premium. That's what I recommend if you're starting out.</p>
+      </div>
+      <div class="body-copy">
+        <p>If you're not new, if you've run memberships before, I'd say jump straight into paid. Start with a standard level, five or seven or eight a month, with courses, a library, a challenge, things people can do on their own. Then add a premium level where they get more of you. Your time, your support.</p>
+      </div>`},
+    {id:"plan", label:"Your Plan", icon:"\u2727", content:`
+      <div class="body-copy">
+        <p>So that's the foundation. Now for the fun part.</p>
+      </div>
+      <div class="artifact-cta">
+        <div class="label">Day 1 Tool</div>
+        <div class="title">Run the builder</div>
+        <p>You select your gifts, and it shows you what your community can actually hold. It'll show you what a free version could look like and what a paid version could look like, so you can feel which one fits how you want to work. You're not locking anything in today. You're seeing what's possible. By the end of Day 1, you'll have a plan in your hands. Not just ideas in your head.</p>
+        <a class="artifact-btn" href="https://aurailia.github.io/skool-community-build/" target="_blank" rel="noopener">Open the Builder \u2192</a>
+      </div>
+      <div class="sig">I believe in you. To living our dreams. \u2014 Aurailia \u2729</div>`},
+    {id:"todo", label:"Today's To-Do", icon:"\u2713", content:`
+      <div class="body-copy">
+        <p>Here's everything for Day 1 in one place. Check each off as you go. It saves on its own.</p>
+      </div>
+      <div class="todo-list">
+        <label class="todo-item"><input type="checkbox" data-todo="d1-t1"><span class="todo-box"></span><span class="todo-text">Watch the Day 1 video</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d1-t2"><span class="todo-box"></span><span class="todo-text">Read through the two membership types, freemium and paid</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d1-t3"><span class="todo-box"></span><span class="todo-text">Run the builder and get your plan</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d1-t4"><span class="todo-box"></span><span class="todo-text">Notice which door feels right for you, freemium or paid</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d1-t5"><span class="todo-box"></span><span class="todo-text">Share the gift that surprised you in the community</span></label>
+      </div>
+      <div class="share-note">Come <a href="https://www.skool.com/embody-wealth?c=60932eb0c32f408c8853873d5dfe35f9&s=newest&fl=" target="_blank" rel="noopener">share one thing inside the community</a>. The gift you didn't expect your whole community could be built around. The one that surprised you.</div>
+      <div class="ground-note">Once these are done, mark the day complete up top and watch the confetti fly.</div>`}
+  ]
+};
+
+
+/* ---- Day 2 — Name It, Claim It ---- */
+PHASES[0].days[1] = {
+  n:2, name:"Name It, Claim It",
+  title:"Name It, Claim It",
+  sub:"Pick your path, get set up on Skool, and name the thing. Today it stops being an idea.",
+  loom:"LOOM_PLACEHOLDER",
+  tabs:[
+    {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
+      <div class="body-copy">
+        <p>Hello again, beautiful souls. How are you feeling after yesterday?</p>
+        <p class="lead">If you ran the builder, you walked away with a plan and a feel for which door is yours. So today we make it real. We claim your path, get you signed up on Skool, name your group, and get you set to record. This is the day it stops being an idea and starts being a thing that exists.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">First, claim your path</div>
+        <p>Yesterday you saw the two doors, freemium and paid, and you got a feel for which fits you. I'm not going to run through them again. Today you just pick one and commit. And you're not locked in. You'll change this as you grow. Pricing, tiers, all of it evolves. Just pick the door you're building first. That's all a decision is. Cutting off the other options long enough to actually move.</p>
+      </div>
+      <div class="body-copy">
+        <p>Once you've claimed your path, go sign up for Skool. There's a button in the next tab. It comes with a free trial, so you can get in and look around before you pay a thing. When you sign up, Skool asks which plan you want, Hobby or Pro. I broke those down in the Hobby vs Pro tab so you know which to pick.</p>
+      </div>
+      <div class="pullquote"><p>Your name can change. Mine has, more times than I can count. What makes people join is the promise underneath it.</p></div>
+      <div class="body-copy">
+        <p>Now the fun part. Naming it. Let me take the pressure off right away, because naming is where almost everyone freezes. People sit on a blank page for two weeks chasing the perfect name, and that's two weeks their community doesn't exist.</p>
+        <p>So before you name anything, get clear on the promise. One line. This is a space for who, to do or become or feel what. Write that down, because you'll come back to it every time you decide what goes inside.</p>
+        <p>Then the name gets easier, because now you're naming the feeling of that promise. If you're stuck, here are four directions you can go.</p>
+      </div>
+      <ol class="ritual">
+        <li><span class="ritual-n">1</span><div><strong>Name the feeling.</strong> The energy of being inside. The witchy, magnetic route.</div></li>
+        <li><span class="ritual-n">2</span><div><strong>Name the transformation.</strong> What they're becoming or stepping into. The outcome, right on the tin.</div></li>
+        <li><span class="ritual-n">3</span><div><strong>Name the room.</strong> A place they belong to. Circle, collective, society, house, table.</div></li>
+        <li><span class="ritual-n">4</span><div><strong>Build your own world.</strong> A word that's distinctly yours, that you can grow a whole language around. The strongest long-term play, but it doesn't have to be where you start.</div></li>
+      </ol>
+      <div class="notice">
+        <div class="notice-label">One thing about your URL</div>
+        <p>Skool gives you a custom URL. You can change your group name as many times as you want, but be more thoughtful about the URL. A lot of people just use their own name, because no matter how often the group name changes, your name stays the same. If you're not sure yet, leave it on the default and set it once you know.</p>
+      </div>
+      <div class="body-copy">
+        <p>Last setup thing. Sign up for Loom. It's the video tool I'm using right now to record myself and share my screen at the same time. You'll want it for the content we build next week. The free version records short videos, which is plenty to start. Just make the account so you're ready when we get there.</p>
+      </div>`},
+    {id:"plans", label:"Hobby vs Pro", icon:"\u{1F4AB}", content:`
+      <div class="body-copy">
+        <p>When you sign up, Skool asks which plan you want. Both give you the exact same features. Unlimited members, courses, videos, the feed, the classroom, the gamification. What changes is the fees and a couple of extras.</p>
+      </div>
+      <div class="doors">
+        <div class="door">
+          <div class="door-name">Hobby</div>
+          <span class="door-tag">$9 / month</span>
+          <p>The trade-off is the transaction fee. Skool takes ten percent of any payment you collect through the platform. You also get one admin, just you, and Skool may show your members other suggested communities in their sidebar. Best place to start when you're not making much yet, because ten percent of a little is almost nothing.</p>
+        </div>
+        <div class="door">
+          <div class="door-name">Pro</div>
+          <span class="door-tag">$99 / month</span>
+          <p>Same features, but the transaction fee drops from ten percent to two point nine. You get unlimited admins so you can bring in help, you can hide those suggested communities, and you can turn on member affiliates, where your members earn a commission you set for referring new people. That last one only exists on Pro.</p>
+        </div>
+      </div>
+      <div class="notice">
+        <div class="notice-label">How to decide</div>
+        <p>Both have a free trial and you can switch anytime, so this is low-stakes. Start on Hobby if you're just beginning. Once your community brings in somewhere around twelve to fourteen hundred a month, that's when Pro starts saving you money, because the lower fee more than covers the higher price. Start cheap, upgrade when the numbers tell you to.</p>
+      </div>
+      <div class="artifact-cta">
+        <div class="label">Sign Up</div>
+        <div class="title">Create your Skool</div>
+        <p>Here's my link to get started. Full transparency, it's my affiliate link, so if you sign up through it Skool sends a little my way at no extra cost to you. Thank you if you use it.</p>
+        <a class="artifact-btn" href="https://www.skool.com/signup?ref=3d4bd5bdcda847a3afcfd90d513f22bf" target="_blank" rel="noopener">Sign Up for Skool \u2192</a>
+      </div>`},
+    {id:"todo", label:"Today's To-Do", icon:"\u2713", content:`
+      <div class="body-copy">
+        <p>Everything for Day 2 in one place. Check each off as you go. It saves on its own.</p>
+      </div>
+      <div class="todo-list">
+        <label class="todo-item"><input type="checkbox" data-todo="d2-t1"><span class="todo-box"></span><span class="todo-text">Watch the Day 2 video</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d2-t2"><span class="todo-box"></span><span class="todo-text">Claim your path: freemium or paid</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d2-t3"><span class="todo-box"></span><span class="todo-text">Sign up for Skool</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d2-t4"><span class="todo-box"></span><span class="todo-text">Choose Hobby or Pro for where you are right now</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d2-t5"><span class="todo-box"></span><span class="todo-text">Write your one-line promise</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d2-t6"><span class="todo-box"></span><span class="todo-text">Name your group (you can change it later)</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d2-t7"><span class="todo-box"></span><span class="todo-text">Set your URL, or leave the default for now</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d2-t8"><span class="todo-box"></span><span class="todo-text">Sign up for Loom so you're ready to record</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d2-t9"><span class="todo-box"></span><span class="todo-text">Share your decisions in the community</span></label>
+      </div>
+      <div class="share-note">Come <a href="https://www.skool.com/embody-wealth?c=60932eb0c32f408c8853873d5dfe35f9&s=newest&fl=" target="_blank" rel="noopener">drop your decisions in the community</a>. Freemium or paid? Hobby or Pro, and why? What did you name your group? Saying it out loud makes it real.</div>
+      <div class="sig">I believe in you. To living our dreams. \u2014 Aurailia \u2729</div>`}
+  ]
+};
+
+
+/* ---- Day 3 — Set the Frequency Before You Build ---- */
+PHASES[0].days[2] = {
+  n:3, name:"Set the Frequency",
+  title:"Set the Frequency Before You Build",
+  sub:"Ground first, then take a tour of the room you're building. No heavy lifting today.",
+  loom:"LOOM_PLACEHOLDER",
+  tabs:[
+    {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
+      <div class="body-copy">
+        <p>Hello beautiful souls. Take a breath with me before we start today. A real one. In through the nose, slow out through the mouth.</p>
+        <p class="lead">Today you get your first real look inside the platform. And the second people see all the buttons and tabs, they go into scramble and try to build everything at once from panic. We're not doing that. You're the host. The host doesn't frantically rearrange the whole house before the party. The host sets the vibe and lets the room come together.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">Set the frequency</div>
+        <p>Before you touch a single setting, set your frequency. You're not behind. You're not late. You're building something that gets to grow slowly, in collaboration with the people who show up. Nothing has to be perfect today. It just has to exist. Calm builds better than panic. A community built from scramble feels like scramble. A community built from your essence feels like you.</p>
+      </div>
+      <div class="pullquote"><p>You're not building a course library. You're building the room where the people who are ready to work with you come to find you.</p></div>
+      <div class="body-copy">
+        <p>Before I show you around, understand what you're actually building, because it's bigger than a place to post. Your community is where you gather the people who are ready to work with you. On social media they're scattered and distracted. Inside your community they're in a room you control, paying attention, in your world.</p>
+        <p>And here's how it compounds. Remember the micro offer from Day 1. It lives inside your community. Someone buys it and they're dropped right into the room. Now they're not a one-time buyer who disappears. They're inside, where they see everything else you offer. The community turns a single small yes into an ongoing relationship.</p>
+      </div>
+      <div class="section-h">The tour: the three C's</div>
+      <div class="body-copy">
+        <p>Watch the video for the full walkthrough. Here's the quick map so you know the room.</p>
+      </div>
+      <ol class="ritual">
+        <li><span class="ritual-n">1</span><div><strong>Community.</strong> The feed. Your front room, where you and your members post, with your welcome post pinned at the top. Categories sort the feed. There's a toggle to email all members, save that for the big stuff so it stays special.</div></li>
+        <li><span class="ritual-n">2</span><div><strong>Classroom.</strong> Where your courses and resources live. Each one has access settings, open to everyone, locked behind a paid tier, or unlocked at a level. You control who sees what.</div></li>
+        <li><span class="ritual-n">3</span><div><strong>Calendar.</strong> Where your events go. Live calls, group sessions. You set who can join, so a premium-only call only shows for premium members.</div></li>
+      </ol>
+      <div class="body-copy">
+        <p>Two back rooms to know about. Your <strong>About page</strong> is what people see before they join, your front door from the outside. We'll build it properly later this week. And <strong>Settings</strong> is the back office, where your pricing, tiers, group name, and your dashboard numbers live. We'll come back to the parts that matter as we need them.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">Start one habit today</div>
+        <p>Be an engaged owner, and not just in your own space. Find two or three other Skool communities you genuinely like and start showing up in them. Comment thoughtfully on people's posts. When you're active and helpful in other rooms, people click your name to find your community. It's some of the most underrated free growth on the platform. Stay active, around ten actions a day, and Skool gives you a little fire icon next to your name, quiet proof that you show up. Start that habit today.</p>
+      </div>`},
+    {id:"todo", label:"Today's To-Do", icon:"\u2713", content:`
+      <div class="body-copy">
+        <p>Today is lighter on purpose. You ground, you learn the room, you get familiar. The real building starts tomorrow. Check each off as you go.</p>
+      </div>
+      <div class="todo-list">
+        <label class="todo-item"><input type="checkbox" data-todo="d3-t1"><span class="todo-box"></span><span class="todo-text">Watch the Day 3 video</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d3-t2"><span class="todo-box"></span><span class="todo-text">Take a breath and set your frequency before you build</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d3-t3"><span class="todo-box"></span><span class="todo-text">Click around your own Skool, open every tab, get familiar</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d3-t4"><span class="todo-box"></span><span class="todo-text">Find 2 or 3 other communities to start engaging in</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d3-t5"><span class="todo-box"></span><span class="todo-text">Share how the platform felt the first time through</span></label>
+      </div>
+      <div class="share-note">Come <a href="https://www.skool.com/embody-wealth?c=60932eb0c32f408c8853873d5dfe35f9&s=newest&fl=" target="_blank" rel="noopener">tell us how it felt in the community</a>. Walking through the platform for the first time, excited, overwhelmed, both? Say it out loud so we can move through it together.</div>
+      <div class="sig">I believe in you. To living our dreams. \u2014 Aurailia \u2729</div>`}
+  ]
+};
+
+
+/* ---- Day 4 — Map Your Classrooms ---- */
+PHASES[0].days[3] = {
+  n:4, name:"Map Your Classrooms",
+  title:"Map Your Classrooms",
+  sub:"Shape your Day 1 plan into three starter classrooms and create the empty shells.",
+  loom:"LOOM_PLACEHOLDER",
+  tabs:[
+    {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
+      <div class="body-copy">
+        <p>Hello beautiful souls. Today we start building for real.</p>
+        <p class="lead">You've grounded, you've toured the room, now we shape it. Today is mapping your classrooms. We are not filling anything with content yet. We're creating the empty shells. The skeleton your community lives in. This is where people overbuild and burn out, so we keep it simple.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">Pull up your Day 1 plan</div>
+        <p>Remember the builder you ran on Day 1. That's your map. It already showed you what your community could hold, the offers and resources that come out of your gifts. Pull it back up, because that's the raw material we're shaping into classrooms today. You're not starting from a blank page. You did this work already.</p>
+      </div>
+      <div class="pullquote"><p>You'll want to build ten classrooms. Don't. Pick three and build those well. A community grows from a few things done with love.</p></div>
+      <div class="section-h">Start with three</div>
+      <ol class="ritual">
+        <li><span class="ritual-n">1</span><div><strong>A Start Here classroom.</strong> The welcome journey, the first thing a new member sees. It orients them, tells them where to begin, and gets them engaged from day one. When someone joins and feels lost, they leave. We'll build the welcome flow over the next couple of days, so today you just create the shell.</div></li>
+        <li><span class="ritual-n">2</span><div><strong>Your core teaching classroom.</strong> Built around your gift, the main thing you help people with. The heart of what you teach. Whatever came up in the builder as your central work, that's this one.</div></li>
+        <li><span class="ritual-n">3</span><div><strong>A library of resources.</strong> Your own collection of tools, guides, and resources that support your community. Things your people come back to. It starts empty and fills up over time, as you create and as your members ask for things.</div></li>
+      </ol>
+      <div class="body-copy">
+        <p>That third one is yours to build for your people, shaped by your gifts. It grows with the community instead of being finished on day one.</p>
+      </div>
+      <div class="section-h">Create the empty shells</div>
+      <div class="body-copy">
+        <p>Go into your Classroom tab and create these three. Just the shells. Give each one a name and a cover image, and set the access. Keep it simple for now. Most starter classrooms can be open to your members, and you can lock things behind a tier later as you build out your premium.</p>
+        <p>They're empty right now, and that's fine. Drop a coming soon note inside each so it doesn't look abandoned. An empty classroom with a warm coming soon feels intentional. A truly empty one feels broken. That's the only trick here.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">On cover images</div>
+        <p>Each classroom wants a cover image. You don't need a designer. Make them in minutes with a tool like Canva, or have AI generate them in your colours. Keep them consistent so your classroom shelf looks like one cohesive space. Same vibe, same palette, across all three.</p>
+      </div>`},
+    {id:"todo", label:"Today's To-Do", icon:"\u2713", content:`
+      <div class="body-copy">
+        <p>Everything for Day 4 in one place. Shells only, no content yet. Check each off as you go.</p>
+      </div>
+      <div class="todo-list">
+        <label class="todo-item"><input type="checkbox" data-todo="d4-t1"><span class="todo-box"></span><span class="todo-text">Watch the Day 4 video</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d4-t2"><span class="todo-box"></span><span class="todo-text">Pull up your plan from the Day 1 builder</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d4-t3"><span class="todo-box"></span><span class="todo-text">Choose your three starter classrooms</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d4-t4"><span class="todo-box"></span><span class="todo-text">Create the three empty shells in your Classroom tab</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d4-t5"><span class="todo-box"></span><span class="todo-text">Add a cover image to each, consistent colours</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d4-t6"><span class="todo-box"></span><span class="todo-text">Drop a coming soon note inside each empty classroom</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d4-t7"><span class="todo-box"></span><span class="todo-text">Share your three classrooms in the community</span></label>
+      </div>
+      <div class="share-note">Come <a href="https://www.skool.com/embody-wealth?c=60932eb0c32f408c8853873d5dfe35f9&s=newest&fl=" target="_blank" rel="noopener">share your three classrooms in the community</a>. What did you map? I love seeing the shape of what people are building, and naming them out loud makes them real.</div>
+      <div class="sig">I believe in you. To living our dreams. \u2014 Aurailia \u2729</div>`}
+  ]
+};
+
+/* ---- WELCOME (Day 0) — the doorway before the path begins ---- */
+const WELCOME = {
+  n:0, name:"Welcome", title:"Welcome In", isWelcome:true,
+  sub:"You said yes to building something that's actually yours. Here's how the next 21 days work.",
+  loom:"LOOM_PLACEHOLDER",
+  tabs:[
+    {id:"start", label:"Start Here", icon:"\u2726", content:`
+      <div class="body-copy">
+        <p>So glad you're here. The fact that you said yes means something. It tells me you're ready to stop scattering your gifts across one-off offers and build a real home for them.</p>
+        <p>Here's how the next 21 days work. We build in three weeks.</p>
+      </div>
+      <div class="doors">
+        <div class="door">
+          <div class="door-name">Week One \u00b7 Build It</div>
+          <p>We build the container. The foundation, the name, the structure, and the bones of your Skool. By the end of the week it's set up and live.</p>
+        </div>
+        <div class="door">
+          <div class="door-name">Week Two \u00b7 Fill It</div>
+          <p>We fill it. The content, the welcome journey, your first rebrandable artifact, and your micro offer. The container gets a heartbeat.</p>
+        </div>
+        <div class="door">
+          <div class="door-name">Week Three \u00b7 Promote It</div>
+          <p>We open the doors. Who you're calling in, your invitation, where to promote, and the frequency to hold while you do it.</p>
+        </div>
+      </div>
+      <div class="body-copy">
+        <p>You're going to walk away from Day 1 with a plan in your hands, not just ideas in your head. Watch the welcome video above, then head to Day 1 and let's begin.</p>
+      </div>`}
+  ]
+};
+
+const STORE_KEY = "skool_build21_progress";
+function loadProgress(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return {}} }
+function saveProgress(p){ try{localStorage.setItem(STORE_KEY,JSON.stringify(p))}catch(e){} }
+let progress = loadProgress();
+
+const flatDays = PHASES.flatMap(p=>p.days);
+function findDay(n){ return n===0 ? WELCOME : flatDays.find(d=>d.n===n); }
+
+let current = 1;
+let collapsed = {0:false,1:true,2:true}; // week 1 open by default
+
+const caretSVG = '<svg class="phase-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+const playSVG = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+const headphoneSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>';
+const filmSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.5"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>';
+
+function updateProgress(){
+  const total = 21;
+  const done = Object.keys(progress).filter(k=>k!=='0' && progress[k]).length;
+  const pct = Math.round(done/total*100);
+  const fill = document.getElementById('progressFill');
+  const label = document.getElementById('progressLabel');
+  if(fill) fill.style.width = pct+'%';
+  if(label) label.textContent = pct+'% complete';
+}
+
+function renderPath(){
+  const nav = document.getElementById('pathNav');
+  const wCls = ['welcome-link'];
+  if(current===0) wCls.push('active');
+  if(progress[0]) wCls.push('done');
+  const welcomeLink = `<div class="${wCls.join(' ')}" data-day="0">
+      <span class="welcome-spark">✦</span>
+      <span class="welcome-text">
+        <span class="day-num">Start Here</span>
+        <span class="day-name">Welcome In</span>
+      </span>
+    </div>`;
+  nav.innerHTML = welcomeLink + PHASES.map((ph,pi)=>{
+    const isCol = collapsed[pi];
+    const days = ph.days.map(d=>{
+      const built = d.tabs && d.tabs.length>0;
+      const cls = ['day-link'];
+      if(d.n===current) cls.push('active');
+      if(progress[d.n]) cls.push('done');
+      if(!built) cls.push('locked');
+      return `<div class="${cls.join(' ')}" data-day="${d.n}">
+        <span class="day-num">Day ${d.n}</span>
+        <span class="day-name">${d.title || d.name}</span>
+      </div>`;
+    }).join('');
+    return `<div class="phase ${isCol?'collapsed':''}" data-phase="${pi}">
+      <button class="phase-head" data-phasehead="${pi}">
+        <span class="phase-title-wrap">
+          <span class="phase-kicker">${ph.kicker}</span>
+          <span class="phase-name">${ph.name}</span>
+        </span>
+        ${caretSVG}
+      </button>
+      <div class="phase-days">${days}</div>
+    </div>`;
+  }).join('');
+
+  updateProgress();
+
+  // set max-height for open phases (smooth collapse)
+  document.querySelectorAll('.phase-days').forEach(el=>{
+    const parent = el.closest('.phase');
+    el.style.maxHeight = parent.classList.contains('collapsed') ? '0px' : el.scrollHeight+40+'px';
+  });
+
+  nav.querySelectorAll('[data-phasehead]').forEach(b=>{
+    b.onclick=()=>{ const i=+b.dataset.phasehead; collapsed[i]=!collapsed[i]; renderPath(); };
+  });
+  nav.querySelectorAll('[data-day]').forEach(el=>{
+    el.onclick=()=>{ current=+el.dataset.day; renderStage(); renderPath(); };
+  });
+}
+
+function renderStage(){
+  const d = findDay(current);
+  const stage = document.getElementById('stage');
+  const built = d.tabs && d.tabs.length>0;
+  const done = progress[d.n];
+
+  const markPill = `<button class="mark-pill ${done?'done':''}" data-mark><span class="ring"></span>${done?'Completed':'Mark Complete'}</button>`;
+
+  if(d.isWelcome){
+    const tabBtnsW = d.tabs.map((t,i)=>`<button class="tab ${i===0?'active':''}" data-tab="${t.id}">${t.icon?`<span class="ico">${t.icon}</span>`:''}${t.label}</button>`).join('');
+    const panelsW = d.tabs.map((t,i)=>`<div class="panel ${i===0?'active':''}" data-panel="${t.id}">${t.content}</div>`).join('');
+    stage.innerHTML = `
+      <div class="day-topline"><span class="day-meta">Start Here · Welcome</span>${markPill}</div>
+      <div class="day-headrow">
+        <h1 class="day-title">${d.title}</h1>
+      </div>
+      ${d.sub?`<div class="day-sub">${d.sub}</div>`:''}
+      ${d.loom && d.loom!=="LOOM_PLACEHOLDER" ? `<div class="video-frame" style="--vid-ratio:56.25%"><iframe src="${d.loom}" allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe></div>` : `<div class="video-frame vid-placeholder" style="--vid-ratio:56.25%"><div class="vid-ph-inner">Welcome video coming soon</div></div>`}
+      <div class="tabs">${tabBtnsW}</div>
+      ${panelsW}
+      ${footNav(d)}`;
+    stage.querySelectorAll('.tab').forEach(b=>{
+      b.onclick=()=>{
+        stage.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+        stage.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+        stage.querySelector(`[data-panel="${b.dataset.tab}"]`).classList.add('active');
+      };
+    });
+    bindFoot(d);
+    return;
+  }
+
+  if(!built){
+    stage.innerHTML = `
+      <div class="day-topline"><span class="day-meta">Day ${d.n} of 21</span>${markPill}</div>
+      <div class="day-headrow">
+        <h1 class="day-title">${d.name}</h1>
+      </div>
+      <div class="placeholder">
+        <strong>Day ${d.n} is ready for content.</strong><br>
+        Paste this day's email and practices and I'll shape it into the tabs.
+      </div>
+      ${footNav(d)}`;
+    bindFoot(d);
+    return;
+  }
+
+  const topline = `<div class="day-topline">
+      <span class="day-meta">Day ${d.n} of 21</span>
+      ${markPill}
+    </div>`;
+
+  let act = '';
+  if(d.activation && d.activation.audio){
+    const chapters = (d.activation.chapters||[]).map(c=>`<li data-seek="${c.sec}"><span class="chap-time">${c.time}</span><span class="chap-label">${c.label}</span></li>`).join('');
+    act = `
+      <div class="audio-player">
+        <button class="play-btn" aria-label="Play meditation">${playSVG}</button>
+        <div class="audio-body">
+          <div class="audio-head">
+            <span class="audio-label">${d.activation.label}</span>
+            <span class="audio-time"><span class="audio-cur">0:00</span> / <span class="audio-dur">--:--</span></span>
+          </div>
+          <div class="audio-title">${d.activation.title}</div>
+          <div class="audio-track"><div class="audio-fill"></div></div>
+        </div>
+        <audio preload="metadata" src="${d.activation.audio}"></audio>
+      </div>
+      ${chapters?`<ul class="chapters seekable">${chapters}</ul>`:''}`;
+  } else if(d.activation && d.activation.embed){
+    const chapters = (d.activation.chapters||[]).map(c=>`<li><span class="chap-time">${c.time}</span><span class="chap-label">${c.label}</span></li>`).join('');
+    act = `
+      <div class="activation-head">
+        <div class="label">${d.activation.label}</div>
+        <div class="title">${d.activation.title}</div>
+      </div>
+      <div class="video-frame act-video"><iframe src="${d.activation.embed}" allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe></div>
+      ${chapters?`<ul class="chapters">${chapters}</ul>`:''}`;
+  } else if(d.activation){
+    act = `
+    <div class="activation">
+      <button class="play-btn" aria-label="Play activation">${playSVG}</button>
+      <div class="activation-text">
+        <div class="label">${d.activation.label}</div>
+        <div class="title">${d.activation.title}</div>
+        ${d.activation.note?`<div class="note">${d.activation.note}</div>`:''}
+      </div>
+    </div>`;
+  }
+
+  const hint = d.hint ? `
+    <div class="listen-hint">${headphoneSVG}<span>Press play and listen first. The teaching below is here to read alongside or after.</span></div>` : '';
+
+  const tabBtns = d.tabs.map((t,i)=>`<button class="tab ${i===0?'active':''}" data-tab="${t.id}">${t.icon?`<span class="ico">${t.icon}</span>`:''}${t.label}</button>`).join('');
+  const panels = d.tabs.map((t,i)=>{
+    const inner = t.content || `<div class="placeholder">${t.placeholder||'Content coming.'}</div>`;
+    return `<div class="panel ${i===0?'active':''}" data-panel="${t.id}">${inner}</div>`;
+  }).join('');
+
+  const videoBlock = d.loom
+    ? (d.loom!=="LOOM_PLACEHOLDER"
+        ? `<div class="video-frame" style="--vid-ratio:56.25%"><iframe src="${d.loom}" allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe></div>`
+        : `<div class="video-frame vid-placeholder" style="--vid-ratio:56.25%"><div class="vid-ph-inner">Video coming soon</div></div>`)
+    : '';
+
+  stage.innerHTML = `
+    ${topline}
+    <div class="day-headrow">
+      <h1 class="day-title">${d.title||d.name}</h1>
+    </div>
+    ${d.sub?`<div class="day-sub">${d.sub}</div>`:''}
+    ${videoBlock}
+    ${act}${hint}
+    <div class="tabs">${tabBtns}</div>
+    ${panels}
+    ${footNav(d)}`;
+
+  stage.querySelectorAll('.tab').forEach(b=>{
+    b.onclick=()=>{
+      stage.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      stage.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      stage.querySelector(`[data-panel="${b.dataset.tab}"]`).classList.add('active');
+    };
+  });
+  bindAudio(stage);
+  bindJournal(stage);
+  bindTodos(stage);
+  bindFoot(d);
+}
+
+const pauseSVG = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+function fmtTime(s){ if(!isFinite(s)||s<0)s=0; const m=Math.floor(s/60),sec=Math.floor(s%60); return m+':'+(sec<10?'0':'')+sec; }
+function bindAudio(stage){
+  const players=stage.querySelectorAll('.audio-player'); if(!players.length) return;
+  players.forEach(player=>{
+    const el=player.querySelector('audio'); if(!el) return;
+    const playBtn=player.querySelector('.play-btn');
+    const fill=player.querySelector('.audio-fill');
+    const track=player.querySelector('.audio-track');
+    const cur=player.querySelector('.audio-cur');
+    const dur=player.querySelector('.audio-dur');
+    el.addEventListener('loadedmetadata',()=>{ if(dur) dur.textContent=fmtTime(el.duration); });
+    el.addEventListener('timeupdate',()=>{
+      if(cur) cur.textContent=fmtTime(el.currentTime);
+      if(el.duration&&fill) fill.style.width=(el.currentTime/el.duration*100)+'%';
+    });
+    el.addEventListener('ended',()=>{ if(playBtn) playBtn.innerHTML=playSVG; });
+    if(playBtn) playBtn.onclick=()=>{
+      if(el.paused){
+        // pause any other players on the page first
+        stage.querySelectorAll('.audio-player audio').forEach(other=>{ if(other!==el){ other.pause(); }});
+        stage.querySelectorAll('.audio-player .play-btn').forEach(b=>{ if(b!==playBtn) b.innerHTML=playSVG; });
+        el.play(); playBtn.innerHTML=pauseSVG;
+      } else { el.pause(); playBtn.innerHTML=playSVG; }
+    };
+    if(track) track.onclick=(e)=>{
+      const r=track.getBoundingClientRect();
+      const pct=Math.min(Math.max((e.clientX-r.left)/r.width,0),1);
+      if(el.duration) el.currentTime=pct*el.duration;
+    };
+    player.querySelectorAll('.chapters.seekable li[data-seek]').forEach(li=>{
+      li.style.cursor='pointer';
+      li.onclick=()=>{ el.currentTime=+li.dataset.seek; if(el.paused){el.play(); if(playBtn) playBtn.innerHTML=pauseSVG;} };
+    });
+  });
+}
+
+const JKEY='skool_build21_journal';
+function loadJournal(){ try{return JSON.parse(localStorage.getItem(JKEY))||{}}catch(e){return {}} }
+function saveJournal(o){ try{localStorage.setItem(JKEY,JSON.stringify(o))}catch(e){} }
+function bindJournal(stage){
+  const store=loadJournal();
+  // shared saved-indicator per day (first one found)
+  const showSaved=(()=>{
+    let t=null;
+    return ()=>{
+      stage.querySelectorAll('.journal-saved').forEach(savedEl=>{
+        savedEl.textContent='Saved'; savedEl.classList.add('show');
+      });
+      clearTimeout(t);
+      t=setTimeout(()=>stage.querySelectorAll('.journal-saved').forEach(s=>s.classList.remove('show')),1400);
+    };
+  })();
+  stage.querySelectorAll('[data-journal]').forEach(field=>{
+    const key=field.dataset.journal;
+    if(store[key]) field.value=store[key];
+    const isTextarea=field.tagName==='TEXTAREA';
+    const big=field.classList.contains('journal')&&!field.classList.contains('grat-why');
+    const autosize=()=>{ if(!isTextarea) return; field.style.height='auto'; field.style.height=Math.max(big?140:46,field.scrollHeight)+'px'; };
+    autosize();
+    field.addEventListener('input',()=>{
+      autosize();
+      const s=loadJournal(); s[key]=field.value; saveJournal(s);
+      showSaved();
+    });
+  });
+}
+
+const TKEY='skool_build21_todos';
+function loadTodos(){ try{return JSON.parse(localStorage.getItem(TKEY))||{}}catch(e){return {}} }
+function saveTodos(o){ try{localStorage.setItem(TKEY,JSON.stringify(o))}catch(e){} }
+function bindTodos(stage){
+  const store=loadTodos();
+  stage.querySelectorAll('[data-todo]').forEach(box=>{
+    const key=box.dataset.todo;
+    box.checked=!!store[key];
+    box.addEventListener('change',()=>{
+      const s=loadTodos(); s[key]=box.checked; saveTodos(s);
+    });
+  });
+}
+
+function footNav(d){
+  const prevOk = d.n>0, nextOk = d.n<21;
+  const prevLabel = d.n===1 ? '← Welcome' : (prevOk ? `← Day ${d.n-1}` : '←');
+  const nextLabel = d.n===0 ? 'Day 1 →' : (nextOk ? `Day ${d.n+1} →` : '→');
+  const done = progress[d.n];
+  const bottomMark = d.isWelcome ? '' : `<div class="foot-complete"><button class="mark-pill ${done?'done':''}" data-mark><span class="ring"></span>${done?'Completed':'Mark Day '+d.n+' Complete'}</button></div>`;
+  return `${bottomMark}<div class="day-foot">
+    <button class="nav-btn" data-prev ${prevOk?'':'disabled'}>${prevLabel}</button>
+    <button class="nav-btn" data-next ${nextOk?'':'disabled'}>${nextLabel}</button>
+  </div>`;
+}
+/* ---- purple & lavender confetti on completing a day ---- */
+const CONFETTI_COLORS = ['#f0a8cd','#c9a4dd','#9fcdd9','#2d6577','#aed6e0','#b9a8e0','#7fb5c4'];
+let _confettiPieces=[], _confettiRAF=null, _confettiCanvas=null, _confettiCtx=null;
+function _confettiResize(){
+  if(!_confettiCanvas) return;
+  const dpr=window.devicePixelRatio||1;
+  _confettiCanvas.width=window.innerWidth*dpr;
+  _confettiCanvas.height=window.innerHeight*dpr;
+  _confettiCtx.setTransform(dpr,0,0,dpr,0,0);
+}
+function fireConfetti(x,y){
+  if(!_confettiCanvas){
+    _confettiCanvas=document.getElementById('confetti');
+    _confettiCtx=_confettiCanvas.getContext('2d');
+    _confettiResize();
+    window.addEventListener('resize',_confettiResize);
+  }
+  const cx=(x==null)?window.innerWidth/2:x;
+  const cy=(y==null)?window.innerHeight/2:y;
+  for(let i=0;i<90;i++){
+    const ang=Math.random()*Math.PI*2;
+    const speed=4+Math.random()*7;
+    _confettiPieces.push({
+      x:cx, y:cy,
+      vx:Math.cos(ang)*speed,
+      vy:Math.sin(ang)*speed-4,
+      g:0.18+Math.random()*0.1,
+      size:5+Math.random()*6,
+      rot:Math.random()*Math.PI,
+      vr:(Math.random()-0.5)*0.3,
+      color:CONFETTI_COLORS[(Math.random()*CONFETTI_COLORS.length)|0],
+      life:0, ttl:70+Math.random()*40,
+      shape:Math.random()<0.5?'rect':'circ'
+    });
+  }
+  if(!_confettiRAF) _confettiRAF=requestAnimationFrame(_confettiTick);
+}
+function _confettiTick(){
+  _confettiCtx.clearRect(0,0,_confettiCanvas.width,_confettiCanvas.height);
+  for(let i=_confettiPieces.length-1;i>=0;i--){
+    const p=_confettiPieces[i];
+    p.life++; p.vy+=p.g; p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr; p.vx*=0.99;
+    const alpha=Math.max(0,1-p.life/p.ttl);
+    _confettiCtx.save();
+    _confettiCtx.globalAlpha=alpha;
+    _confettiCtx.translate(p.x,p.y);
+    _confettiCtx.rotate(p.rot);
+    _confettiCtx.fillStyle=p.color;
+    if(p.shape==='rect') _confettiCtx.fillRect(-p.size/2,-p.size/2,p.size,p.size*0.55);
+    else { _confettiCtx.beginPath(); _confettiCtx.arc(0,0,p.size/2,0,Math.PI*2); _confettiCtx.fill(); }
+    _confettiCtx.restore();
+    if(p.life>=p.ttl||p.y>window.innerHeight+40) _confettiPieces.splice(i,1);
+  }
+  if(_confettiPieces.length) _confettiRAF=requestAnimationFrame(_confettiTick);
+  else { _confettiRAF=null; _confettiCtx.clearRect(0,0,_confettiCanvas.width,_confettiCanvas.height); }
+}
+
+function bindFoot(d){
+  const stage=document.getElementById('stage');
+  const prev=stage.querySelector('[data-prev]'), next=stage.querySelector('[data-next]');
+  const marks=stage.querySelectorAll('[data-mark]');
+  if(prev) prev.onclick=()=>{ if(d.n>0){current=d.n-1;openPhaseFor(current);renderStage();renderPath();window.scrollTo({top:0,behavior:'smooth'});} };
+  if(next) next.onclick=()=>{ if(d.n<21){current=d.n+1;openPhaseFor(current);renderStage();renderPath();window.scrollTo({top:0,behavior:'smooth'});} };
+  marks.forEach(mark=>{
+    mark.onclick=()=>{
+      const wasDone=!!progress[d.n];
+      progress[d.n]=!progress[d.n];
+      saveProgress(progress);
+      if(!wasDone){
+        const r=mark.getBoundingClientRect();
+        fireConfetti(r.left+r.width/2, r.top+r.height/2);
+      }
+      renderStage(); renderPath();
+    };
+  });
+}
+function openPhaseFor(n){
+  PHASES.forEach((ph,pi)=>{ if(ph.days.some(d=>d.n===n)) collapsed[pi]=false; });
+}
+
+/* smart entry: newcomers land on Welcome; returning visitors resume */
+(function init(){
+  const started = Object.keys(progress).some(k=>progress[k]);
+  if(!started){
+    current = 0;
+  } else {
+    const firstUnfinished = flatDays.find(d=>d.tabs.length>0 && !progress[d.n]);
+    current = firstUnfinished ? firstUnfinished.n : 1;
+  }
+  openPhaseFor(current);
+  renderPath();
+  renderStage();
+})();
+</script>
+</body>
+</html>
