@@ -41,8 +41,8 @@ body{
   --bg-image:url('background.jpg');
   background:#0a1018;
   background-image:
-    /* deep ink veil ON TOP of your image (keeps it rich + moody) */
-    linear-gradient(165deg, rgba(10,16,24,0.86) 0%, rgba(15,25,35,0.82) 40%, rgba(18,32,45,0.88) 100%),
+    /* light ink veil ON TOP of your image (lets the colors show) */
+    linear-gradient(165deg, rgba(12,18,28,0.34) 0%, rgba(16,26,38,0.28) 45%, rgba(20,34,48,0.40) 100%),
     /* your image */
     var(--bg-image),
     /* fallback ink wash if no image is set */
@@ -77,8 +77,9 @@ header.masthead{
   padding:22px 30px;
   display:flex;align-items:center;justify-content:space-between;
   gap:24px;flex-wrap:wrap;
-  background:linear-gradient(120deg, #2c2148 0%, #221836 100%);
-  border:1px solid rgba(185,168,224,0.3);
+  background:linear-gradient(120deg, rgba(20,32,46,0.72) 0%, rgba(15,25,38,0.78) 100%);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border:1px solid rgba(174,214,224,0.28);
   border-radius:22px;
   box-shadow:0 18px 50px rgba(60,40,95,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
 }
@@ -115,11 +116,12 @@ header.masthead{
 /* ---------- PATH SIDEBAR (dark glass) ---------- */
 aside.path{
   position:sticky;top:120px;
-  background:linear-gradient(160deg, #2a1f44 0%, #1f1638 100%);
-  border:1px solid rgba(185,168,224,0.24);
+  background:linear-gradient(160deg, rgba(22,34,48,0.74) 0%, rgba(16,26,40,0.80) 100%);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border:1px solid rgba(174,214,224,0.22);
   border-radius:24px;
   padding:26px 22px 28px;
-  box-shadow:0 18px 50px rgba(60,40,95,0.30);
+  box-shadow:0 18px 50px rgba(8,16,28,0.45);
 }
 .path-eyebrow{
   display:flex;align-items:center;gap:7px;
@@ -215,11 +217,12 @@ aside.path{
 
 /* ---------- CONTENT STAGE (on dark) ---------- */
 main.stage{
-  background:linear-gradient(165deg, #271c42 0%, #1c1338 100%);
-  border:1px solid rgba(185,168,224,0.2);
+  background:linear-gradient(165deg, rgba(20,30,44,0.82) 0%, rgba(14,22,34,0.86) 100%);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  border:1px solid rgba(174,214,224,0.18);
   border-radius:28px;
   padding:48px 54px 56px;
-  box-shadow:0 24px 70px rgba(60,40,95,0.34);
+  box-shadow:0 24px 70px rgba(8,16,28,0.5);
   min-height:560px;
 }
 .day-topline{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
