@@ -14,17 +14,17 @@
   --plum-deep:#12202d;
   --plum:#1b3242;
   --plum-glass:rgba(30,58,78,0.42);
-  --lavender:#7fb5c4;
-  --lavender-soft:#aed6e0;
-  --lavender-bright:#9fcdd9;
+  --lavender:#9fd4e0;
+  --lavender-soft:#c4e6ee;
+  --lavender-bright:#b6e2ec;
   --gold:#e89ec4;
   --pink:#f0a8cd;
   --pink-soft:#f6c4dd;
   --lilac:#b9a8e0;
   --lilac-soft:#d7cdee;
   --text:#e8eef2;
-  --text-soft:#a7bcc8;
-  --text-dim:#6f8a99;
+  --text-soft:#c3d4dd;
+  --text-dim:#94aab6;
   --cream:#f4ece0;
   --line:rgba(127,181,196,0.16);
   --serif:'Cormorant Garamond',Georgia,serif;
@@ -212,8 +212,31 @@ aside.path{
 .day-link.active .day-num{color:var(--lavender-soft)}
 .day-name{font-family:var(--serif);font-weight:500;font-size:18px;color:var(--text-soft);line-height:1.18}
 .day-link.active .day-name{color:#fff}
-.day-link.locked{opacity:.45}
+.day-link.locked{opacity:.5;position:relative}
 .day-link.locked .day-name{font-style:italic}
+.day-link.locked:hover{background:transparent;cursor:default}
+.lock-ico{position:absolute;right:14px;top:50%;transform:translateY(-50%);opacity:.7}
+.lock-ico svg{width:14px;height:14px;display:block;color:var(--lavender-soft)}
+
+/* locked day screen */
+.locked-screen{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:48px 30px 40px;
+}
+.locked-ring{
+  width:74px;height:74px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg, rgba(58,122,140,0.3), rgba(45,101,119,0.2));
+  border:1px solid rgba(174,214,224,0.32);margin-bottom:22px;
+}
+.locked-ring svg{width:30px;height:30px;color:var(--lavender-soft)}
+.locked-title{
+  font-family:var(--serif);font-weight:600;font-size:30px;color:#fff;margin-bottom:12px;
+}
+.locked-text{
+  font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--text-soft);
+  max-width:460px;margin:0;
+}
 
 /* ---------- CONTENT STAGE (on dark) ---------- */
 main.stage{
@@ -757,7 +780,7 @@ PHASES[0].days[0] = {
   n:1, name:"The Foundation",
   title:"The Foundation, Then Your Plan",
   sub:"Why community, the two ways to build one, and the tool that hands you your plan today.",
-  loom:"LOOM_PLACEHOLDER",
+  loom:"https://www.loom.com/embed/7ef128ed16ab4e85b16b6deab84cd2ca",
   tabs:[
     {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
       <div class="body-copy">
@@ -772,7 +795,7 @@ PHASES[0].days[0] = {
       </div>
       <div class="pullquote"><p>Here's what I've always believed. A low-ticket membership is the key. It's the doorway.</p></div>
       <div class="body-copy">
-        <p>I had a program called Casa Cashflow, where you build a simple journey for your client starting with one micro offer. A small, easy yes. And when you've got a community, that micro offer gets to live inside it. Someone buys your micro offer and they're automatically dropped into your world. Now they're not a one-time buyer. They're in the room.</p>
+        <p>I had a program called From Chaos to Cashflow, where you build a simple journey for your client starting with one micro offer. A small, easy yes. And when you've got a community, that micro offer gets to live inside it. Someone buys your micro offer and they're automatically dropped into your world. Now they're not a one-time buyer. They're in the room.</p>
       </div>
       <div class="notice">
         <div class="notice-label">You're the host, not the guru</div>
@@ -1031,7 +1054,7 @@ PHASES[0].days[3] = {
 const WELCOME = {
   n:0, name:"Welcome", title:"Welcome In", isWelcome:true,
   sub:"You said yes to building something that's actually yours. Here's how the next 21 days work.",
-  loom:"LOOM_PLACEHOLDER",
+  loom:"https://www.loom.com/embed/1a3b4fdfcbf2487e835c1a14c320f5cc",
   tabs:[
     {id:"start", label:"Start Here", icon:"\u2726", content:`
       <div class="body-copy">
@@ -1059,6 +1082,19 @@ const WELCOME = {
 };
 
 const STORE_KEY = "skool_build21_progress";
+
+/* =========================================================
+   RELEASE CONTROL
+   Change this one number to release days. Welcome is always open.
+   0 = only Welcome open
+   1 = Day 1 unlocked
+   2 = Days 1-2 unlocked
+   ...up to 21 = all days unlocked
+   ========================================================= */
+const RELEASED_DAYS = 1;
+
+function isLocked(n){ return n>0 && n>RELEASED_DAYS; }
+
 function loadProgress(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return {}} }
 function saveProgress(p){ try{localStorage.setItem(STORE_KEY,JSON.stringify(p))}catch(e){} }
 let progress = loadProgress();
@@ -1066,13 +1102,14 @@ let progress = loadProgress();
 const flatDays = PHASES.flatMap(p=>p.days);
 function findDay(n){ return n===0 ? WELCOME : flatDays.find(d=>d.n===n); }
 
-let current = 1;
+let current = 0;
 let collapsed = {0:false,1:true,2:true}; // week 1 open by default
 
 const caretSVG = '<svg class="phase-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
 const playSVG = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
 const headphoneSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>';
 const filmSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.5"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>';
+const lockSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
 
 function updateProgress(){
   const total = 21;
@@ -1099,14 +1136,15 @@ function renderPath(){
   nav.innerHTML = welcomeLink + PHASES.map((ph,pi)=>{
     const isCol = collapsed[pi];
     const days = ph.days.map(d=>{
-      const built = d.tabs && d.tabs.length>0;
+      const locked = isLocked(d.n);
       const cls = ['day-link'];
       if(d.n===current) cls.push('active');
       if(progress[d.n]) cls.push('done');
-      if(!built) cls.push('locked');
+      if(locked) cls.push('locked');
       return `<div class="${cls.join(' ')}" data-day="${d.n}">
         <span class="day-num">Day ${d.n}</span>
         <span class="day-name">${d.title || d.name}</span>
+        ${locked?`<span class="lock-ico">${lockSVG}</span>`:''}
       </div>`;
     }).join('');
     return `<div class="phase ${isCol?'collapsed':''}" data-phase="${pi}">
@@ -1142,6 +1180,21 @@ function renderStage(){
   const stage = document.getElementById('stage');
   const built = d.tabs && d.tabs.length>0;
   const done = progress[d.n];
+
+  // Locked day: not yet released
+  if(isLocked(current)){
+    stage.innerHTML = `
+      <div class="day-topline"><span class="day-meta">Day ${d.n} of 21</span></div>
+      <div class="day-headrow"><h1 class="day-title">${d.title || d.name}</h1></div>
+      <div class="locked-screen">
+        <div class="locked-ring">${lockSVG}</div>
+        <div class="locked-title">This day unlocks soon</div>
+        <p class="locked-text">We're releasing the challenge one day at a time so you can actually do the work without rushing ahead. Come back when Day ${d.n} opens, and keep building on what you've got so far.</p>
+      </div>
+      ${footNav(d)}`;
+    bindFoot(d);
+    return;
+  }
 
   const markPill = `<button class="mark-pill ${done?'done':''}" data-mark><span class="ring"></span>${done?'Completed':'Mark Complete'}</button>`;
 
@@ -1376,11 +1429,14 @@ function bindTodos(stage){
 }
 
 function footNav(d){
-  const prevOk = d.n>0, nextOk = d.n<21;
+  const prevOk = d.n>0;
+  const nextExists = d.n<21;
+  const nextOk = nextExists && !isLocked(d.n+1);
   const prevLabel = d.n===1 ? '← Welcome' : (prevOk ? `← Day ${d.n-1}` : '←');
-  const nextLabel = d.n===0 ? 'Day 1 →' : (nextOk ? `Day ${d.n+1} →` : '→');
+  const nextLabel = d.n===0 ? 'Day 1 →' : (nextExists ? `Day ${d.n+1} →` : '→');
   const done = progress[d.n];
-  const bottomMark = d.isWelcome ? '' : `<div class="foot-complete"><button class="mark-pill ${done?'done':''}" data-mark><span class="ring"></span>${done?'Completed':'Mark Day '+d.n+' Complete'}</button></div>`;
+  const locked = isLocked(d.n);
+  const bottomMark = (d.isWelcome || locked) ? '' : `<div class="foot-complete"><button class="mark-pill ${done?'done':''}" data-mark><span class="ring"></span>${done?'Completed':'Mark Day '+d.n+' Complete'}</button></div>`;
   return `${bottomMark}<div class="day-foot">
     <button class="nav-btn" data-prev ${prevOk?'':'disabled'}>${prevLabel}</button>
     <button class="nav-btn" data-next ${nextOk?'':'disabled'}>${nextLabel}</button>
@@ -1466,14 +1522,14 @@ function openPhaseFor(n){
   PHASES.forEach((ph,pi)=>{ if(ph.days.some(d=>d.n===n)) collapsed[pi]=false; });
 }
 
-/* smart entry: newcomers land on Welcome; returning visitors resume */
+/* smart entry: newcomers land on Welcome; returning visitors resume on the latest released, unfinished day */
 (function init(){
-  const started = Object.keys(progress).some(k=>progress[k]);
-  if(!started){
+  const started = Object.keys(progress).some(k=>k!=='0' && progress[k]);
+  if(!started || RELEASED_DAYS<1){
     current = 0;
   } else {
-    const firstUnfinished = flatDays.find(d=>d.tabs.length>0 && !progress[d.n]);
-    current = firstUnfinished ? firstUnfinished.n : 1;
+    const firstUnfinished = flatDays.find(d=>!isLocked(d.n) && d.tabs.length>0 && !progress[d.n]);
+    current = firstUnfinished ? firstUnfinished.n : RELEASED_DAYS;
   }
   openPhaseFor(current);
   renderPath();
