@@ -262,12 +262,46 @@ main.stage{
 .watch-btn:hover{background:linear-gradient(120deg, rgba(58,122,140,0.45), rgba(45,101,119,0.38));color:#fff}
 .watch-btn.active{background:linear-gradient(120deg,#3a7a8c,#2d6577);color:#fff;border-color:transparent}
 .watch-btn.soon{opacity:0.55;cursor:default;color:var(--text-dim)}
-.video-reveal{
-  max-height:0;overflow:hidden;opacity:0;
-  transition:max-height .45s ease, opacity .35s ease, margin .35s ease;
-  margin:0;
+
+/* video modal */
+.video-modal{
+  position:fixed;inset:0;z-index:100;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
 }
-.video-reveal.open{max-height:80vh;opacity:1;margin:8px 0 26px}
+.video-modal.open{opacity:1;pointer-events:auto}
+.video-modal-backdrop{
+  position:absolute;inset:0;
+  background:rgba(6,10,18,0.7);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+.video-modal-inner{
+  position:relative;z-index:1;width:100%;max-width:960px;
+  transform:scale(0.96);transition:transform .25s ease;
+}
+.video-modal.open .video-modal-inner{transform:scale(1)}
+.video-modal-frame{
+  position:relative;width:100%;padding-bottom:56.25%;height:0;
+  border-radius:16px;overflow:hidden;
+  background:#0a0f18;
+  box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  border:1px solid rgba(174,214,224,0.25);
+}
+.video-modal-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-modal-close{
+  position:absolute;top:-16px;right:-8px;z-index:2;
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,#f0a8cd,#c9a4dd);color:#2a2440;
+  border:none;font-size:28px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 22px rgba(0,0,0,0.4);transition:transform .15s ease;
+}
+.video-modal-close:hover{transform:scale(1.08)}
+@media (max-width:860px){
+  .video-modal{padding:16px}
+  .video-modal-close{top:-52px;right:0}
+}
 .day-meta{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim)}
 .video-chip{
   display:inline-flex;align-items:center;gap:8px;
@@ -724,6 +758,14 @@ main.stage{
     <!-- STAGE -->
     <main class="stage" id="stage"></main>
 
+  </div>
+</div>
+
+<div class="video-modal" id="video-modal" data-modal>
+  <div class="video-modal-backdrop" data-modal-close></div>
+  <div class="video-modal-inner">
+    <button class="video-modal-close" data-modal-close aria-label="Close video">&times;</button>
+    <div class="video-modal-frame" data-modal-frame></div>
   </div>
 </div>
 
@@ -1257,10 +1299,7 @@ function renderStage(){
     const wHasLoom = !!d.loom;
     const wReady = wHasLoom && d.loom!=="LOOM_PLACEHOLDER";
     const wBtn = wHasLoom
-      ? `<button class="watch-btn${wReady?'':' soon'}" data-watch ${wReady?'':'disabled'}>${filmSVG}${wReady?'Watch Welcome Video':'Welcome video coming soon'}</button>`
-      : '';
-    const wVideo = wReady
-      ? `<div class="video-reveal" data-video><div class="video-frame" style="--vid-ratio:56.25%"><iframe src="${d.loom}" allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe></div></div>`
+      ? `<button class="watch-btn${wReady?'':' soon'}" data-watch data-loom="${wReady?d.loom:''}" ${wReady?'':'disabled'}>${filmSVG}${wReady?'Watch Welcome Video':'Welcome video coming soon'}</button>`
       : '';
     const tabBtnsW = d.tabs.map((t,i)=>`<button class="tab ${i===0?'active':''}" data-tab="${t.id}">${t.icon?`<span class="ico">${t.icon}</span>`:''}${t.label}</button>`).join('');
     const panelsW = d.tabs.map((t,i)=>`<div class="panel ${i===0?'active':''}" data-panel="${t.id}">${t.content}</div>`).join('');
@@ -1270,7 +1309,6 @@ function renderStage(){
         <h1 class="day-title">${d.title}</h1>
       </div>
       ${d.sub?`<div class="day-sub">${d.sub}</div>`:''}
-      ${wVideo}
       <div class="tabs">${tabBtnsW}</div>
       ${panelsW}
       ${footNav(d)}`;
@@ -1282,8 +1320,7 @@ function renderStage(){
         stage.querySelector(`[data-panel="${b.dataset.tab}"]`).classList.add('active');
       };
     });
-    const wWatch=stage.querySelector('[data-watch]'), wReveal=stage.querySelector('[data-video]');
-    if(wWatch && wReveal){ wWatch.onclick=()=>{ const open=wReveal.classList.toggle('open'); wWatch.classList.toggle('active',open); if(open) wReveal.scrollIntoView({block:'nearest',behavior:'smooth'}); }; }
+    wireVideoModal(stage);
     bindFoot(d);
     return;
   }
@@ -1306,7 +1343,7 @@ function renderStage(){
   const hasLoom = !!d.loom;
   const loomReady = hasLoom && d.loom!=="LOOM_PLACEHOLDER";
   const videoBtn = hasLoom
-    ? `<button class="watch-btn${loomReady?'':' soon'}" data-watch ${loomReady?'':'disabled'}>${filmSVG}${loomReady?'Watch Video Lesson':'Video coming soon'}</button>`
+    ? `<button class="watch-btn${loomReady?'':' soon'}" data-watch data-loom="${loomReady?d.loom:''}" ${loomReady?'':'disabled'}>${filmSVG}${loomReady?'Watch Video Lesson':'Video coming soon'}</button>`
     : '';
   const topline = `<div class="day-topline">
       <span class="day-meta">Day ${d.n} of 21${videoBtn?' &middot; ' :''}</span>
@@ -1362,17 +1399,12 @@ function renderStage(){
     return `<div class="panel ${i===0?'active':''}" data-panel="${t.id}">${inner}</div>`;
   }).join('');
 
-  const videoBlock = loomReady
-    ? `<div class="video-reveal" data-video><div class="video-frame" style="--vid-ratio:56.25%"><iframe src="${d.loom}" allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe></div></div>`
-    : '';
-
   stage.innerHTML = `
     ${topline}
     <div class="day-headrow">
       <h1 class="day-title">${d.title||d.name}</h1>
     </div>
     ${d.sub?`<div class="day-sub">${d.sub}</div>`:''}
-    ${videoBlock}
     ${act}${hint}
     <div class="tabs">${tabBtns}</div>
     ${panels}
@@ -1390,15 +1422,40 @@ function renderStage(){
   bindJournal(stage);
   bindTodos(stage);
   bindFoot(d);
+  wireVideoModal(stage);
+}
+
+/* video modal: opens the Loom in a blurred overlay on tap, one tap to play.
+   the iframe is created on open and destroyed on close, so nothing runs
+   in the background and scrolling stays smooth. */
+function wireVideoModal(stage){
   const watchBtn=stage.querySelector('[data-watch]');
-  const videoReveal=stage.querySelector('[data-video]');
-  if(watchBtn && videoReveal){
-    watchBtn.onclick=()=>{
-      const open=videoReveal.classList.toggle('open');
-      watchBtn.classList.toggle('active', open);
-      if(open) videoReveal.scrollIntoView({block:'nearest', behavior:'smooth'});
-    };
-  }
+  if(!watchBtn) return;
+  const loomUrl=watchBtn.getAttribute('data-loom');
+  if(!loomUrl) return;
+  watchBtn.onclick=()=>{ openVideoModal(loomUrl); };
+}
+
+function openVideoModal(loomUrl){
+  const overlay=document.getElementById('video-modal');
+  const holder=overlay.querySelector('[data-modal-frame]');
+  holder.innerHTML='';
+  const ifr=document.createElement('iframe');
+  ifr.setAttribute('src', loomUrl+(loomUrl.indexOf('?')>-1?'&':'?')+'autoplay=1');
+  ifr.setAttribute('allowfullscreen','');
+  ifr.setAttribute('allow','autoplay; fullscreen; picture-in-picture');
+  holder.appendChild(ifr);
+  overlay.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeVideoModal(){
+  const overlay=document.getElementById('video-modal');
+  if(!overlay) return;
+  overlay.classList.remove('open');
+  const holder=overlay.querySelector('[data-modal-frame]');
+  if(holder) holder.innerHTML='';
+  document.body.style.overflow='';
 }
 
 const pauseSVG = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
@@ -1589,6 +1646,14 @@ function openPhaseFor(n){
   openPhaseFor(current);
   renderPath();
   renderStage();
+
+  // modal close: backdrop, close button, and Escape key
+  document.querySelectorAll('[data-modal-close]').forEach(el=>{
+    el.addEventListener('click', closeVideoModal);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape') closeVideoModal();
+  });
 })();
 </script>
 </body>
