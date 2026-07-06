@@ -1097,7 +1097,7 @@ PHASES[0].days[3] = {
   n:4, name:"Map Your Classrooms",
   title:"Map Your Classrooms",
   sub:"Aim for six shells in rows, then start building your Start Here. Skeleton first.",
-  loom:"LOOM_PLACEHOLDER",
+  loom:"https://www.loom.com/embed/9d376bf9b73b4ec89f23e66ad715eb81",
   tabs:[
     {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
       <div class="body-copy">
@@ -1571,9 +1571,9 @@ function openVideoModal(loomUrl){
   const holder=overlay.querySelector('[data-modal-frame]');
   holder.innerHTML='';
   const ifr=document.createElement('iframe');
-  ifr.setAttribute('src', loomUrl+(loomUrl.indexOf('?')>-1?'&':'?')+'autoplay=1');
+  ifr.setAttribute('src', loomUrl);
   ifr.setAttribute('allowfullscreen','');
-  ifr.setAttribute('allow','autoplay; fullscreen; picture-in-picture');
+  ifr.setAttribute('allow','fullscreen; picture-in-picture');
   holder.appendChild(ifr);
   overlay.classList.add('open');
   document.body.style.overflow='hidden';
