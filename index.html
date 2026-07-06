@@ -699,6 +699,41 @@ main.stage{
   margin:28px 0 4px;line-height:1.1;
 }
 
+/* about page template cards */
+.tmpl{
+  background:linear-gradient(160deg, rgba(58,122,140,0.12), rgba(20,49,64,0.08));
+  border:1px solid rgba(174,214,224,0.22);border-radius:18px;
+  padding:22px 24px;margin:0 0 20px;
+}
+.tmpl-name{font-family:var(--serif);font-weight:600;font-size:23px;color:#fff;line-height:1.1}
+.tmpl-sub{font-family:var(--sans);font-size:14px;color:var(--text-soft);font-style:italic;margin:4px 0 14px}
+.tmpl-box{
+  position:relative;
+  background:rgba(10,16,24,0.4);border:1px solid rgba(174,214,224,0.16);
+  border-radius:12px;padding:16px 18px;padding-top:44px;
+  font-family:var(--sans);font-size:14.5px;line-height:1.7;color:var(--text);
+}
+.tmpl-copy{
+  position:absolute;top:10px;right:10px;z-index:2;
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--lavender-soft);
+  background:linear-gradient(120deg, rgba(58,122,140,0.35), rgba(45,101,119,0.3));
+  border:1px solid rgba(174,214,224,0.3);
+  border-radius:20px;padding:6px 13px;cursor:pointer;transition:all .15s ease;
+}
+.tmpl-copy:hover{background:linear-gradient(120deg,#3a7a8c,#2d6577);color:#fff}
+.tmpl-copy.copied{background:linear-gradient(135deg,#f0a8cd,#c9a4dd);color:#2a2440;border-color:transparent}
+.tmpl-copy svg{width:13px;height:13px}
+.tmpl-box.prompt{
+  background:linear-gradient(160deg, rgba(240,168,205,0.1), rgba(144,121,196,0.08));
+  border-color:rgba(240,168,205,0.3);color:var(--text-soft);font-size:13.5px;
+}
+.tmpl-prompt-label{
+  font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:#f0a8cd;margin:14px 0 8px;
+}
+
 .todo-list{display:flex;flex-direction:column;gap:12px;margin:6px 0 24px}
 .todo-item{
   display:flex;align-items:flex-start;gap:14px;cursor:pointer;
@@ -1147,6 +1182,100 @@ PHASES[0].days[3] = {
   ]
 };
 
+
+/* ---- Day 5 — About and Welcome ---- */
+PHASES[0].days[4] = {
+  n:5, name:"About and Welcome",
+  title:"About and Welcome",
+  sub:"Your cover is the sign. Your About page is the promise. Let's build the front door.",
+  loom:"LOOM_PLACEHOLDER",
+  tabs:[
+    {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
+      <div class="body-copy">
+        <p>Hello beautiful souls. Today we build the front door.</p>
+        <p class="lead">You've got your classroom shells and you've started your Start Here. Now we work on the piece that decides whether anyone actually walks in. Your cover and your About page. Most people rush this, and it's honestly one of the most important things you'll do.</p>
+      </div>
+      <div class="pullquote"><p>Imagine you're building a town. It's empty, and you want to bring people in. So you put up signs so people driving by know your town is even there.</p></div>
+      <div class="body-copy">
+        <p>Your cover image is that sign. It's the first thing someone sees, and it's what makes them slow down and turn off the road to come look. If the sign is boring or confusing, they drive right past. If it's magnetic, they get curious and they come closer. That's why your cover is one of the most important pieces of your whole community.</p>
+        <p>A sign only gets them to the edge of town. Once they're curious enough to look closer, that's your About page. It has to deliver on what the sign promised and show them what's actually inside this beautiful town you've built. Who it's for, what happens here, what they'll get. And your welcome video is where they get to feel you, your essence, before they ever join.</p>
+        <p>This is the moment it all comes down to. Someone lands on your About page, and they either feel it and sign up, or they drift off. So we're going to make it really good.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">Put your face on the sign</div>
+        <p>One thing that matters more than people think: have a photo of you on your cover. People join people. Your face is what builds instant trust and connection at the sign. A beautiful graphic is lovely, but a warm, real photo of you invites people in on a whole other level. Let them see the human they're coming to hang out with.</p>
+      </div>
+      <div class="section-h">Your cover, the sign</div>
+      <div class="body-copy">
+        <p>Start with your cover. It doesn't need to be fancy, and it can change any time, so don't get stuck. It needs to be clear and magnetic. People should glance at it and get a feel for what your town is about and who it's for. A clean image in your colours, your community name, a photo of you, and a short line that captures the promise. Make it in Canva, or start it in ChatGPT and finish it in Canva. Get something up, refine it later.</p>
+      </div>
+      <div class="section-h">Your About page, the promise fulfilled</div>
+      <div class="body-copy">
+        <p>Now the About page. I don't want you staring at a blank box, so I've made you four templates plus a Claude prompt for each. Head to the next tab. Pick the one that fits your vibe, then either fill it in yourself or let Claude interview you and write it for you.</p>
+        <p>Whichever you choose, keep it warm and human, the way you'd talk to someone you genuinely want in your world. And weave your welcome video right into that page.</p>
+      </div>
+      <div class="section-h">Your welcome video</div>
+      <div class="body-copy">
+        <p>Inside the About page, add a short welcome video. This is where people feel you. It doesn't need to be long or polished. Two or three minutes is plenty. Say hi, tell them who you are and why you built this space, tell them who it's for, and give them a warm invitation to come in. People join people, so letting them feel your essence here does more than any perfect paragraph.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">The auto DM (Pro feature)</div>
+        <p>A lovely touch if you're on Skool Pro. You can set up an auto DM, an automatic message that goes out the moment someone joins. So the second they walk into your town, they get a warm hello from you waiting for them. Keep it simple and genuine. Welcome them, tell them you're so glad they're here, and point them to one thing to do first, usually your Start Here. If you're on Hobby you won't have this yet, and that's completely fine, your pinned welcome post does the same job.</p>
+      </div>`},
+    {id:"templates", label:"About Page Templates", icon:"\u2727", content:`
+      <div class="body-copy">
+        <p>Four templates, each shaped for soul-led communities like yours. Pick the one that fits your vibe. Then either fill in the brackets yourself, or copy the Claude prompt underneath it, paste it into Claude, and let it interview you and write your page on that template.</p>
+      </div>
+
+      <div class="tmpl">
+        <div class="tmpl-name">1 &middot; The Origin Story</div>
+        <div class="tmpl-sub">For when your journey is the reason people trust you.</div>
+        <div class="tmpl-box">I know what it's like to [the struggle your people are living right now].<br><br>[One or two sentences on your own journey through that same struggle.]<br><br>Then [your work, your gift, the shift you found] changed everything. [One real result or moment that proves it.]<br><br>Now I'm here to walk you through the same thing.<br><br>Inside [Community Name] you'll find:<br>\u2728 [Core thing one]<br>\u2728 [Core thing two]<br>\u2728 [Core thing three]<br><br>You don't have to figure this out alone. Come in. \u{1F49B}</div>
+        <div class="tmpl-prompt-label">\u2728 Or use the Claude prompt</div>
+        <div class="tmpl-box prompt">You're writing my Skool community's About page using "The Origin Story" structure. Warm, human, no jargon, no hype, the way a real person talks to someone they care about. Ask me these one at a time and wait for each answer: 1) What struggle are your people living right now? 2) What was your own journey through that same struggle? 3) What shifted it for you, and what's one real result or moment that proves it? 4) What's your community called and what are the three core things inside? Then write my About page in this flow: I know what it's like to [struggle], my journey, the shift and proof, an invitation, the three things inside, and a warm close. Keep it in my voice, short sentences, no jargon.</div>
+      </div>
+
+      <div class="tmpl">
+        <div class="tmpl-name">2 &middot; The Vibe Tribe</div>
+        <div class="tmpl-sub">For when the feeling of the room is the whole draw.</div>
+        <div class="tmpl-box">Welcome to [Community Name], where [what you do] is [the deeper thing it really is, e.g. a practice, a homecoming, a ritual].<br><br>This is a space for [your people] who are ready to [the transformation].<br><br>Here's what makes it feel different:<br>\u{1F4AB} [The energy or culture of the space]<br>\u{1F319} [The embodiment or heart element]<br>\u2728 [The fun or connection element]<br><br>This is where you stop doing it alone and start rising with people who get it.<br><br>Come feel it for yourself. \u{1F49B}</div>
+        <div class="tmpl-prompt-label">\u2728 Or use the Claude prompt</div>
+        <div class="tmpl-box prompt">You're writing my Skool community's About page using "The Vibe Tribe" structure, where the feeling of the space is the main draw. Warm, magnetic, human, no jargon, no hype. Ask me these one at a time and wait for each answer: 1) What's your community called and what do you do in it? 2) What's the deeper thing it really is to your people? 3) Who is it for and what transformation are they after? 4) What are the three things that make the feeling of your space different (the culture, the heart, the fun)? Then write my About page in this flow: a warm welcome that names the deeper thing, who it's for, the three things that make it feel different, and an invitation to come feel it. Keep it in my voice, short sentences, no jargon.</div>
+      </div>
+
+      <div class="tmpl">
+        <div class="tmpl-name">3 &middot; The Value Stack</div>
+        <div class="tmpl-sub">For when you want them to see clearly everything they get.</div>
+        <div class="tmpl-box">[One line naming the transformation they're here for.]<br><br>Here's what's waiting for you inside [Community Name]:<br>\u2728 [Name the actual thing, e.g. "The 7-Day Recalibrate Challenge"] [and the quick result it gives]<br>\u2728 [Name the actual thing, e.g. "Monthly Group Hypnosis"]<br>\u2728 [Name the actual thing, e.g. "Weekly Wealth Frequency Oracle Pulls"]<br>\u2728 [Name the actual thing]<br>\u2728 and more inside \u{1F4AB}<br><br>All of it in one place, for [your price or "less than you'd think"].<br><br>This is where you stop collecting free downloads you never open and start actually doing the work with people beside you.<br><br>Come in and see what's waiting for you. \u{1F49B}</div>
+        <div class="tmpl-prompt-label">\u2728 Or use the Claude prompt</div>
+        <div class="tmpl-box prompt">You're writing my Skool community's About page using "The Value Stack" structure, where they clearly see everything they get. Warm, clear, human, no jargon, no hype. Important: name the actual things by their real names (like "The 7-Day Recalibrate Challenge" or "Monthly Group Hypnosis"), not vague categories like "nervous system tools." Specific named offers convert, vague benefits don't. Ask me these one at a time and wait for each answer: 1) What's the main transformation your people are here for? 2) What's your community called? 3) What are the actual named things they get inside (list the real names of your challenges, sessions, tools, and offers), and what does each one give them? 4) What's the price, or do you want to keep it soft? Then write my About page in this flow: the transformation line, everything they get as a warm list using the real names with the quick result each gives, an "and more inside" line since there's always more than fits, the price or soft line, a line about actually doing the work together, and an invitation. Keep it in my voice, short sentences, no jargon.</div>
+      </div>
+
+      <div class="tmpl">
+        <div class="tmpl-name">4 &middot; The Simple Method</div>
+        <div class="tmpl-sub">For when your people feel overwhelmed and you're the calm way through.</div>
+        <div class="tmpl-box">[What you help with] doesn't have to feel so hard.<br><br>After [your experience or your own journey], I've stripped it down to what actually works.<br><br>Inside [Community Name], we keep it simple:<br>\u2728 [Simple piece one]<br>\u2728 [Simple piece two]<br>\u2728 [Simple piece three]<br><br>No overwhelm. No fifty tabs open. Just a clear path and a community walking it with you.<br><br>Come take the first step. \u{1F49B}</div>
+        <div class="tmpl-prompt-label">\u2728 Or use the Claude prompt</div>
+        <div class="tmpl-box prompt">You're writing my Skool community's About page using "The Simple Method" structure, for people who feel overwhelmed and need a calm clear way through. Warm, grounding, human, no jargon, no hype. Ask me these one at a time and wait for each answer: 1) What do you help people with, and what makes it feel hard for them right now? 2) What's your experience or your own journey with it? 3) What's your community called? 4) What are the three simple pieces of your path? Then write my About page in this flow: it doesn't have to be so hard, your experience, the three simple pieces, a line about no overwhelm just a clear path with community, and an invitation to take the first step. Keep it in my voice, short sentences, no jargon.</div>
+      </div>`},
+    {id:"todo", label:"Today's To-Do", icon:"\u2713", content:`
+      <div class="body-copy">
+        <p>Everything for Day 5 in one place. Your front door: cover, About page, welcome video. Check each off as you go.</p>
+      </div>
+      <div class="todo-list">
+        <label class="todo-item"><input type="checkbox" data-todo="d5-t1"><span class="todo-box"></span><span class="todo-text">Watch the Day 5 video</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d5-t2"><span class="todo-box"></span><span class="todo-text">Make a starter cover, with a photo of you on it</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d5-t3"><span class="todo-box"></span><span class="todo-text">Pick an About page template and fill it in, or run its Claude prompt</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d5-t4"><span class="todo-box"></span><span class="todo-text">Add your About page copy to Skool</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d5-t5"><span class="todo-box"></span><span class="todo-text">Record a short welcome video and add it to your About page</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d5-t6"><span class="todo-box"></span><span class="todo-text">If you're on Pro, set up a simple auto DM for new members</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d5-t7"><span class="todo-box"></span><span class="todo-text">Share your About page in the community</span></label>
+      </div>
+      <div class="share-note">Come <a href="https://www.skool.com/embody-wealth?c=60932eb0c32f408c8853873d5dfe35f9&s=newest&fl=" target="_blank" rel="noopener">drop your About page in the community</a> so we can come see your town and tell you how it feels walking up to it. This is one of my favourite things to witness.</div>
+      <div class="sig">I believe in you. To living our dreams. \u2014 Aurailia \u2729</div>`}
+  ]
+};
+
 /* ---- WELCOME (Day 0) — the doorway before the path begins ---- */
 const WELCOME = {
   n:0, name:"Welcome", title:"Welcome In", isWelcome:true,
@@ -1188,7 +1317,7 @@ const STORE_KEY = "skool_build21_progress";
    2 = Days 1-2 unlocked
    ...up to 21 = all days unlocked
    ========================================================= */
-const RELEASED_DAYS = 4;
+const RELEASED_DAYS = 5;
 
 function isLocked(n){ return n>0 && n>RELEASED_DAYS; }
 
@@ -1421,6 +1550,7 @@ function renderStage(){
   bindAudio(stage);
   bindJournal(stage);
   bindTodos(stage);
+  bindCopyButtons(stage);
   bindFoot(d);
   wireVideoModal(stage);
 }
@@ -1537,6 +1667,59 @@ function bindTodos(stage){
     box.addEventListener('change',()=>{
       const s=loadTodos(); s[key]=box.checked; saveTodos(s);
     });
+  });
+}
+
+const copySVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+
+function boxToText(box){
+  // convert <br> to newlines and read plain text, so copied prompt keeps its line breaks
+  const clone=box.cloneNode(true);
+  const btn=clone.querySelector('.tmpl-copy');
+  if(btn) btn.remove();
+  clone.querySelectorAll('br').forEach(br=>br.replaceWith('\n'));
+  return (clone.textContent||'').replace(/\n{3,}/g,'\n\n').trim();
+}
+
+function doCopy(text, done){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done, function(){ fallbackCopy(text, done); });
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+function fallbackCopy(text, done){
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=text; ta.setAttribute('readonly','');
+    ta.style.position='absolute'; ta.style.left='-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    done();
+  }catch(e){}
+}
+
+function bindCopyButtons(stage){
+  stage.querySelectorAll('.tmpl-box').forEach(box=>{
+    if(box.querySelector('.tmpl-copy')) return;
+    const btn=document.createElement('button');
+    btn.className='tmpl-copy';
+    btn.innerHTML=copySVG+'<span>Copy</span>';
+    btn.addEventListener('click', function(){
+      const text=boxToText(box);
+      doCopy(text, function(){
+        btn.classList.add('copied');
+        const label=btn.querySelector('span');
+        if(label) label.textContent='Copied';
+        setTimeout(function(){
+          btn.classList.remove('copied');
+          if(label) label.textContent='Copy';
+        }, 1600);
+      });
+    });
+    box.appendChild(btn);
   });
 }
 
