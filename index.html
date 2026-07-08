@@ -712,6 +712,47 @@ main.stage{
 
 /* EFT tapping list */
 .eft-list{list-style:none;padding:0;margin:6px 0 22px;display:flex;flex-direction:column;gap:10px}
+
+/* week one checklist */
+.wk-progress{
+  background:linear-gradient(160deg, rgba(58,122,140,0.16), rgba(20,49,64,0.1));
+  border:1px solid rgba(174,214,224,0.26);border-radius:18px;
+  padding:22px 24px;margin:6px 0 26px;
+}
+.wk-progress-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.wk-progress-label{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--lavender-soft)}
+.wk-progress-count{font-family:var(--serif);font-size:22px;font-weight:600;color:#fff}
+.wk-bar{height:12px;border-radius:20px;background:rgba(10,16,24,0.5);overflow:hidden;border:1px solid rgba(174,214,224,0.15)}
+.wk-fill{height:100%;width:0%;border-radius:20px;background:linear-gradient(90deg,#2d6577,#9fd4e0,#f0a8cd);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.wk-message{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--lavender-soft);margin-top:14px;line-height:1.5;transition:opacity .3s ease}
+.wk-group-title{
+  font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:#f0a8cd;margin:22px 0 10px;
+}
+.wk-list{display:flex;flex-direction:column;gap:10px;margin-bottom:8px}
+.wk-item{
+  display:flex;align-items:flex-start;gap:13px;cursor:pointer;
+  background:rgba(10,16,24,0.35);border:1px solid rgba(174,214,224,0.14);
+  border-radius:12px;padding:13px 16px;transition:all .15s ease;
+}
+.wk-item:hover{border-color:rgba(174,214,224,0.3)}
+.wk-item input{position:absolute;opacity:0;width:0;height:0}
+.wk-box{
+  flex:0 0 auto;width:22px;height:22px;border-radius:7px;margin-top:1px;
+  border:2px solid rgba(174,214,224,0.4);background:rgba(10,16,24,0.4);
+  display:flex;align-items:center;justify-content:center;transition:all .15s ease;
+}
+.wk-item input:checked + .wk-box{
+  background:linear-gradient(135deg,#f0a8cd,#c9a4dd);border-color:transparent;
+}
+.wk-item input:checked + .wk-box::after{
+  content:"";width:6px;height:11px;border:solid #2a2440;border-width:0 2.5px 2.5px 0;
+  transform:rotate(45deg);margin-top:-2px;
+}
+.wk-text{font-family:var(--sans);font-size:14.5px;line-height:1.55;color:var(--text-soft)}
+.wk-text strong{color:var(--text);font-weight:600}
+.wk-item input:checked ~ .wk-text{opacity:0.6}
+.wk-item input:checked ~ .wk-text strong{text-decoration:line-through;text-decoration-color:rgba(174,214,224,0.5)}
 .eft-list li{
   font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--text);
   background:rgba(10,16,24,0.35);border:1px solid rgba(174,214,224,0.14);
@@ -1212,7 +1253,7 @@ PHASES[0].days[4] = {
   n:5, name:"About and Welcome",
   title:"About and Welcome",
   sub:"Your cover is the sign. Your About page is the promise. Let's build the front door.",
-  loom:"LOOM_PLACEHOLDER",
+  loom:"https://www.loom.com/embed/b9412a7e7f1f4fc3ba6f27d1c676f3bb",
   tabs:[
     {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
       <div class="body-copy">
@@ -1306,7 +1347,7 @@ PHASES[0].days[5] = {
   n:6, name:"Build Day",
   title:"Build Day",
   sub:"What it actually takes to open your doors. It doesn't need to be complicated.",
-  loom:"LOOM_PLACEHOLDER",
+  loom:"https://www.loom.com/embed/a8a0bb17f64c456592fc56ab9da4b267",
   tabs:[
     {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
       <div class="body-copy">
@@ -1406,6 +1447,84 @@ PHASES[0].days[5] = {
   ]
 };
 
+
+/* ---- Day 7 — Week One Integration (catch up + checklist) ---- */
+PHASES[0].days[6] = {
+  n:7, name:"Week One Integration",
+  title:"Week One Integration",
+  sub:"You made it. Today you catch up, check in, and celebrate what you built.",
+  loom:"LOOM_PLACEHOLDER",
+  tabs:[
+    {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
+      <div class="body-copy">
+        <p>Hello beautiful souls. You made it. Week One is done.</p>
+        <p class="lead">In seven days you went from an idea to a real container. You named it, set it up, mapped your classrooms, built your Start Here, made your front door. That is not small. Most people carry the dream of this for years and never start. You started, and you built.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">Today you get to breathe</div>
+        <p>We're not building anything new today. This is a catch-up and a check-in. A day to land, to finish anything still open, and to look back at how far you've come. And if you feel behind, you're not behind. This day exists precisely so you can catch up. There's no gold star for speed here. We're building with intention, for the long run.</p>
+      </div>
+      <div class="body-copy">
+        <p>Head to the Week One Checklist tab. Everything you set out to build this week is there, grouped so it's easy to see. Check off what you've done, and let yourself feel each one, because every item is something real you created. What's left becomes your simple map for today. Most of it, if anything, lives in your Skool settings and takes minutes once you sit down with it.</p>
+      </div>
+      <div class="section-h">If you only do a few things today</div>
+      <div class="body-copy">
+        <p>Short on time or energy? Here's what matters most. Get your Start Here going. Get your About page and cover up. Those three are your doorway, and with them in place, you have something real people can walk into. Everything else keeps filling in over the coming weeks.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">Celebrate yourself</div>
+        <p>Before you close today, come into the community and tell us one thing you're proud of from this week. Not what's left. What you did. Name it out loud and let us celebrate you, because you just built the foundation of something that can change your life and the lives of the people you're here to serve. Next week we start filling it with life. For now, rest in what you've built. You've earned it.</p>
+      </div>`},
+    {id:"checklist", label:"Week One Checklist", icon:"\u2713", content:`
+      <div class="body-copy">
+        <p>Everything you set out to build this week, in one place. Check off what you've done and watch your progress fill. What's left is simply your map for today.</p>
+      </div>
+      <div class="wk-progress">
+        <div class="wk-progress-head">
+          <span class="wk-progress-label">Your Week One Progress</span>
+          <span class="wk-progress-count"><span data-wk-done>0</span> / <span data-wk-total>16</span></span>
+        </div>
+        <div class="wk-bar"><div class="wk-fill" data-wk-fill></div></div>
+        <div class="wk-message" data-wk-message>Tick off your first one and let's celebrate you.</div>
+      </div>
+
+      <div class="wk-group-title">Your Foundation</div>
+      <div class="wk-list">
+        <label class="wk-item"><input type="checkbox" data-wk="w1"><span class="wk-box"></span><span class="wk-text"><strong>Chose your path, freemium or paid.</strong> The door you're building first. You can change it as you grow.</span></label>
+        <label class="wk-item"><input type="checkbox" data-wk="w2"><span class="wk-box"></span><span class="wk-text"><strong>Named your community and set up Skool.</strong> Your name is claimed and your account is live.</span></label>
+        <label class="wk-item"><input type="checkbox" data-wk="w3"><span class="wk-box"></span><span class="wk-text"><strong>Set your pricing.</strong> In Settings, set your tiers, free, freemium, or paid, whichever path you chose.</span></label>
+        <label class="wk-item"><input type="checkbox" data-wk="w4"><span class="wk-box"></span><span class="wk-text"><strong>Added keywords for discoverability.</strong> In Settings, add keywords so Skool can send you free members searching for what you do.</span></label>
+      </div>
+
+      <div class="wk-group-title">Your Space</div>
+      <div class="wk-list">
+        <label class="wk-item"><input type="checkbox" data-wk="w5"><span class="wk-box"></span><span class="wk-text"><strong>Created your categories.</strong> In your Community tab, set up a few feed categories like wins, questions, and general.</span></label>
+        <label class="wk-item"><input type="checkbox" data-wk="w6"><span class="wk-box"></span><span class="wk-text"><strong>Mapped your classrooms in rows.</strong> Free row on top, paid row below, 1:1s at the end.</span></label>
+        <label class="wk-item"><input type="checkbox" data-wk="w7"><span class="wk-box"></span><span class="wk-text"><strong>Built your Start Here classroom.</strong> The welcome journey every member sees first.</span></label>
+        <label class="wk-item"><input type="checkbox" data-wk="w8"><span class="wk-box"></span><span class="wk-text"><strong>Added your micro offer classroom.</strong> The easy-yes offer that brings people in. Can be something you already have.</span></label>
+        <label class="wk-item"><input type="checkbox" data-wk="w9"><span class="wk-box"></span><span class="wk-text"><strong>Added your library classroom.</strong> A small collection of resources your people can dip into.</span></label>
+        <label class="wk-item"><input type="checkbox" data-wk="w10"><span class="wk-box"></span><span class="wk-text"><strong>Added your events classroom, if you have events.</strong> Where your live calls and sessions live.</span></label>
+      </div>
+
+      <div class="wk-group-title">Your Front Door</div>
+      <div class="wk-list">
+        <label class="wk-item"><input type="checkbox" data-wk="w11"><span class="wk-box"></span><span class="wk-text"><strong>Made your cover, with a photo of you.</strong> Your sign. People join people, so put your face on it.</span></label>
+        <label class="wk-item"><input type="checkbox" data-wk="w12"><span class="wk-box"></span><span class="wk-text"><strong>Wrote your About page.</strong> The promise your cover makes, fulfilled. Use a Day 5 template or Claude prompt.</span></label>
+        <label class="wk-item"><input type="checkbox" data-wk="w13"><span class="wk-box"></span><span class="wk-text"><strong>Recorded your welcome video.</strong> Where people feel you. Two or three minutes is plenty.</span></label>
+        <label class="wk-item"><input type="checkbox" data-wk="w14"><span class="wk-box"></span><span class="wk-text"><strong>Updated your auto welcome DM, if you're on Pro.</strong> A warm hello that greets every new member the moment they join.</span></label>
+      </div>
+
+      <div class="wk-group-title">Your Frequency</div>
+      <div class="wk-list">
+        <label class="wk-item"><input type="checkbox" data-wk="w15"><span class="wk-box"></span><span class="wk-text"><strong>Joined a few communities from the heart.</strong> Show up in 2 or 3 other communities and cheer people on.</span></label>
+        <label class="wk-item"><input type="checkbox" data-wk="w16"><span class="wk-box"></span><span class="wk-text"><strong>Opened your doors, or decided you're going.</strong> When your foundation's in place, flip it live. Or decide today that you're going.</span></label>
+      </div>
+
+      <div class="share-note">When you're ready, come <a href="https://www.skool.com/embody-wealth?c=60932eb0c32f408c8853873d5dfe35f9&s=newest&fl=" target="_blank" rel="noopener">tell us one thing you're proud of</a> from this week. Not what's left, what you did. Let us celebrate you.</div>
+      <div class="sig">I believe in you. To living our dreams. \u2014 Aurailia \u2729</div>`}
+  ]
+};
+
 /* ---- WELCOME (Day 0) — the doorway before the path begins ---- */
 const WELCOME = {
   n:0, name:"Welcome", title:"Welcome In", isWelcome:true,
@@ -1447,7 +1566,7 @@ const STORE_KEY = "skool_build21_progress";
    2 = Days 1-2 unlocked
    ...up to 21 = all days unlocked
    ========================================================= */
-const RELEASED_DAYS = 6;
+const RELEASED_DAYS = 7;
 
 function isLocked(n){ return n>0 && n>RELEASED_DAYS; }
 
@@ -1681,6 +1800,7 @@ function renderStage(){
   bindJournal(stage);
   bindTodos(stage);
   bindCopyButtons(stage);
+  bindWeekChecklist(stage);
   bindFoot(d);
   wireVideoModal(stage);
 }
@@ -1851,6 +1971,97 @@ function bindCopyButtons(stage){
     });
     box.appendChild(btn);
   });
+}
+
+const WK_KEY="skool_build21_weekcheck";
+function loadWk(){ try{return JSON.parse(localStorage.getItem(WK_KEY))||{}}catch(e){return {}} }
+function saveWk(o){ try{localStorage.setItem(WK_KEY,JSON.stringify(o))}catch(e){} }
+
+// pool of encouraging lines, in Aurailia's voice, shown fresh on each check
+const WK_CHEERS = [
+  "Yes. That's one more thing that's real now.",
+  "Look at you go. That's the frequency right there.",
+  "Another piece of your container, built. Beautiful.",
+  "That's real. You made that real.",
+  "One more brick in the home you're building for your people.",
+  "Feel that? That's momentum, and it's yours.",
+  "You're doing the thing so many people only dream about.",
+  "That's your magic, made visible. Keep going.",
+  "Every check is a piece of you, out in the world.",
+  "So proud of you for that one.",
+  "That's how a whole community gets built. One yes at a time.",
+  "You just moved something from your head into reality.",
+  "Look how far you've come already.",
+  "That's the essence work and the strategy, together. Gorgeous.",
+  "Another one done. Your people are getting closer.",
+  "You showed up for this. That matters."
+];
+
+function wkPickCheer(state){
+  // avoid repeating the last one
+  var i = Math.floor(Math.random()*WK_CHEERS.length);
+  if(state && WK_CHEERS.length>1 && i===state.last){ i = (i+1)%WK_CHEERS.length; }
+  if(state) state.last = i;
+  return WK_CHEERS[i];
+}
+
+function wkMessage(done, total, justChecked, state){
+  if(done===total) return "You did it. Every single one. You built the whole foundation this week. I am so proud of you. \u2729";
+  if(done===0) return "Tick off your first one and let's celebrate you.";
+  // milestone moments still get their special line
+  if(justChecked && done === Math.round(total/2)) return "You're halfway home. Feel how much you've already made real.";
+  if(justChecked) return wkPickCheer(state);
+  // on load (not a fresh click), show a progress-based line
+  var pct = done/total;
+  if(pct < 0.25) return "Look at you go. You're moving, and that's everything.";
+  if(pct < 0.5) return "You're building real momentum now. Keep going, beautiful.";
+  if(pct < 0.75) return "You're over halfway. Feel how much you've already made real.";
+  return "So close now. Look at everything you've built this week.";
+}
+
+function bindWeekChecklist(stage){
+  var boxes = stage.querySelectorAll('[data-wk]');
+  if(!boxes.length) return;
+  var fill = stage.querySelector('[data-wk-fill]');
+  var doneEl = stage.querySelector('[data-wk-done]');
+  var totalEl = stage.querySelector('[data-wk-total]');
+  var msgEl = stage.querySelector('[data-wk-message]');
+  var total = boxes.length;
+  if(totalEl) totalEl.textContent = total;
+  var store = loadWk();
+  var wasComplete = false;
+  var cheerState = { last: -1 };
+
+  function refresh(justChecked){
+    var done = 0;
+    boxes.forEach(function(b){ if(b.checked) done++; });
+    if(fill) fill.style.width = (total? (done/total*100):0) + '%';
+    if(doneEl) doneEl.textContent = done;
+    if(msgEl){
+      msgEl.style.opacity = 0;
+      setTimeout(function(){ msgEl.textContent = wkMessage(done,total,justChecked,cheerState); msgEl.style.opacity = 1; }, 150);
+    }
+    if(done===total && !wasComplete && justChecked){
+      wasComplete = true;
+      var r = (fill||stage).getBoundingClientRect();
+      fireConfetti(r.left + r.width/2, r.top + 40);
+      setTimeout(function(){ fireConfetti(window.innerWidth*0.3, window.innerHeight*0.3); }, 250);
+      setTimeout(function(){ fireConfetti(window.innerWidth*0.7, window.innerHeight*0.3); }, 450);
+    }
+    if(done!==total) wasComplete = false;
+  }
+
+  boxes.forEach(function(b){
+    var key = b.getAttribute('data-wk');
+    b.checked = !!store[key];
+    b.addEventListener('change', function(){
+      var s = loadWk(); s[key] = b.checked; saveWk(s);
+      refresh(b.checked);
+    });
+  });
+  var initDone = 0; boxes.forEach(function(b){ if(b.checked) initDone++; });
+  wasComplete = (initDone===total);
+  refresh(false);
 }
 
 function footNav(d){
