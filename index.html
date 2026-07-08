@@ -2080,12 +2080,13 @@ function footNav(d){
 }
 /* ---- purple & lavender confetti on completing a day ---- */
 const CONFETTI_COLORS = ['#f0a8cd','#c9a4dd','#9fcdd9','#2d6577','#aed6e0','#b9a8e0','#7fb5c4'];
-let _confettiPieces=[], _confettiRAF=null, _confettiCanvas=null, _confettiCtx=null;
+let _confettiPieces=[], _confettiRAF=null, _confettiCanvas=null, _confettiCtx=null, _confettiW=0, _confettiH=0;
 function _confettiResize(){
   if(!_confettiCanvas) return;
-  const dpr=window.devicePixelRatio||1;
-  _confettiCanvas.width=window.innerWidth*dpr;
-  _confettiCanvas.height=window.innerHeight*dpr;
+  const dpr=Math.min(window.devicePixelRatio||1, 1.5);
+  _confettiW=window.innerWidth; _confettiH=window.innerHeight;
+  _confettiCanvas.width=_confettiW*dpr;
+  _confettiCanvas.height=_confettiH*dpr;
   _confettiCtx.setTransform(dpr,0,0,dpr,0,0);
 }
 function fireConfetti(x,y){
@@ -2097,7 +2098,7 @@ function fireConfetti(x,y){
   }
   const cx=(x==null)?window.innerWidth/2:x;
   const cy=(y==null)?window.innerHeight/2:y;
-  for(let i=0;i<90;i++){
+  for(let i=0;i<70;i++){
     const ang=Math.random()*Math.PI*2;
     const speed=4+Math.random()*7;
     _confettiPieces.push({
@@ -2116,7 +2117,7 @@ function fireConfetti(x,y){
   if(!_confettiRAF) _confettiRAF=requestAnimationFrame(_confettiTick);
 }
 function _confettiTick(){
-  _confettiCtx.clearRect(0,0,_confettiCanvas.width,_confettiCanvas.height);
+  _confettiCtx.clearRect(0,0,_confettiW,_confettiH);
   for(let i=_confettiPieces.length-1;i>=0;i--){
     const p=_confettiPieces[i];
     p.life++; p.vy+=p.g; p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr; p.vx*=0.99;
@@ -2132,7 +2133,7 @@ function _confettiTick(){
     if(p.life>=p.ttl||p.y>window.innerHeight+40) _confettiPieces.splice(i,1);
   }
   if(_confettiPieces.length) _confettiRAF=requestAnimationFrame(_confettiTick);
-  else { _confettiRAF=null; _confettiCtx.clearRect(0,0,_confettiCanvas.width,_confettiCanvas.height); }
+  else { _confettiRAF=null; _confettiCtx.clearRect(0,0,_confettiW,_confettiH); }
 }
 
 function bindFoot(d){
@@ -2149,8 +2150,11 @@ function bindFoot(d){
       if(!wasDone){
         const r=mark.getBoundingClientRect();
         fireConfetti(r.left+r.width/2, r.top+r.height/2);
+        // let the confetti start cleanly, then refresh the view
+        setTimeout(()=>{ renderStage(); renderPath(); }, 60);
+      } else {
+        renderStage(); renderPath();
       }
-      renderStage(); renderPath();
     };
   });
 }
