@@ -699,6 +699,30 @@ main.stage{
   margin:28px 0 4px;line-height:1.1;
 }
 
+/* audio coming soon placeholder */
+.audio-soon{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  background:linear-gradient(160deg, rgba(58,122,140,0.16), rgba(20,49,64,0.1));
+  border:1px solid rgba(174,214,224,0.24);border-radius:18px;
+  padding:34px 26px;margin:6px 0 22px;
+}
+.audio-soon-icon{font-size:34px;margin-bottom:10px}
+.audio-soon-title{font-family:var(--serif);font-weight:600;font-size:22px;color:#fff;margin-bottom:6px}
+.audio-soon-text{font-family:var(--sans);font-size:14.5px;color:var(--text-soft)}
+
+/* EFT tapping list */
+.eft-list{list-style:none;padding:0;margin:6px 0 22px;display:flex;flex-direction:column;gap:10px}
+.eft-list li{
+  font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--text);
+  background:rgba(10,16,24,0.35);border:1px solid rgba(174,214,224,0.14);
+  border-radius:12px;padding:12px 16px;
+}
+.eft-pt{
+  display:inline-block;font-weight:700;color:#f0a8cd;
+  font-size:12px;letter-spacing:.5px;text-transform:uppercase;
+  margin-right:10px;
+}
+
 /* about page template cards */
 .tmpl{
   background:linear-gradient(160deg, rgba(58,122,140,0.12), rgba(20,49,64,0.08));
@@ -1276,6 +1300,108 @@ PHASES[0].days[4] = {
   ]
 };
 
+
+/* ---- Day 6 — Build Day ---- */
+PHASES[0].days[5] = {
+  n:6, name:"Build Day",
+  title:"Build Day",
+  sub:"What it actually takes to open your doors. It doesn't need to be complicated.",
+  loom:"LOOM_PLACEHOLDER",
+  tabs:[
+    {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
+      <div class="body-copy">
+        <p>Hello beautiful souls. Today I want to talk about what it actually takes to open the doors, and how to move through the fear that comes up when you do, whether that's today or next week.</p>
+        <p class="lead">Everything you've worked on this week has been leading here. And I want to take the pressure all the way off, because opening your doors does not need to be complicated. The version in your head is probably way bigger than what's actually required.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">It doesn't need to be complicated</div>
+        <p>You do not need a finished, polished, fully-stocked community to open. You need something real and something warm. People aren't joining a perfect archive of content. They're joining you, and the feeling of the space, and the promise of what's coming. If you're feeling like you have so much left to build, take a breath. You have more than enough already.</p>
+      </div>
+      <div class="section-h">If you're stuck on your classrooms, do this</div>
+      <div class="body-copy">
+        <p>If you're feeling tangled up in your classrooms, here's all you actually need to start. Just do your Start Here. Get that one classroom going, even simply, even just the welcome video. Then come into the community and share it with us. That alone is enough to have something real and alive.</p>
+        <p>Then, when you're ready, add your micro offer. And here's the part that takes the weight off. Your micro offer can be something you already have. You do not have to build it from scratch. A course you made a while ago. A three-part audio series. A workshop you ran once. A meditation bundle. Any of that can become your micro offer. You just drop it into a classroom, and now it's part of your community.</p>
+      </div>
+      <div class="pullquote"><p>Start Here up and shared, then one micro offer you already have dropped into a classroom. That's a living community with a doorway in.</p></div>
+      <div class="body-copy">
+        <p>Everything else comes later, a little at a time, as your people show up and tell you what they need. In the video I'll show you exactly how I take something I already have and drop it into a classroom, so you can watch how simple it really is.</p>
+      </div>
+      <div class="section-h">The threshold</div>
+      <div class="body-copy">
+        <p>Now the part nobody warns you about. Whenever you go to open your doors, whether that's today or a week from now, the fear comes up right before. It's not ready. Who am I to do this. What if no one comes. Maybe I should wait and make it a little more perfect first.</p>
+        <p>I've felt it every single time I've put something into the world. And here's what I've learned. That voice never goes away by waiting. It gets louder. The only thing that moves you through it is going. Being seen before you feel ready, because you'll never feel fully ready, and that's the sign you're right at the edge of something real.</p>
+        <p>What you're doing is a kind of birth. Something that came out of your gifts, coming into the world. Breathe there. You get to do this. Not because it's perfect, but because it's yours, and your people are waiting for exactly what only you carry. Done and real beats perfect and invisible, every time.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">When you feel ready to open</div>
+        <p>Here's the minimum that actually needs to be true. Not a finished community, a real one. Your cover is up with a photo of you on it. Your About page is live. Your welcome post is pinned. Your Start Here exists, even if it's just the welcome video. You have at least one thing in a classroom, which can be that micro offer you already had. And your pricing is set. That's a real, live, joinable community. Everything else comes later.</p>
+      </div>
+      <div class="body-copy">
+        <p>And whenever you cross that line, come tell us. Say the words, my community is live. Drop the link. Let us be the first to walk through your doors and celebrate you.</p>
+      </div>`},
+    {id:"hypnosis", label:"Going-Live Hypnosis", icon:"\u{1F319}", content:`
+      <div class="body-copy">
+        <p>A hypnosis to move through the fear of being seen and step into this next version of you, the one who has a live community. Find a quiet moment, put your headphones in, and let it land in your body. Do this before you open your doors, or right after.</p>
+      </div>
+      <div class="audio-soon">
+        <div class="audio-soon-icon">\u{1F319}</div>
+        <div class="audio-soon-title">Going-Live Hypnosis</div>
+        <div class="audio-soon-text">Audio coming soon. Aurailia's recording this one for you.</div>
+      </div>
+      <div class="body-copy">
+        <p>When it's here, find somewhere you won't be disturbed, soften your body, and let yourself be guided through releasing the fear and stepping into being seen. You are a woman with a living community. Your people are waiting for you.</p>
+      </div>`},
+    {id:"eft", label:"Going-Live EFT", icon:"\u2728", content:`
+      <div class="body-copy">
+        <p>If the fear or resistance comes up in the moment, tap along with this round. It clears the charge fast, right when you need it. Follow the words any time the wobble hits. We tap the karate chop point (side of the hand) for the setup, then move through the points.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">The setup, karate chop point (side of the hand)</div>
+        <p>Tap the side of your hand and say each of these:<br><br>Even though I'm scared to be seen, and part of me feels like this isn't ready, I deeply and completely love and accept myself.<br><br>Even though this fear of going live is here, and who am I to do this, I choose to honour where I am and go anyway.<br><br>Even though it feels vulnerable to open my doors, I choose to trust that my people are waiting for me, and I'm safe to be seen.</p>
+      </div>
+      <div class="section-h">Round one, moving through the fear</div>
+      <ul class="eft-list">
+        <li><span class="eft-pt">Top of head</span> This fear of being seen.</li>
+        <li><span class="eft-pt">Eyebrow</span> It's not ready, I'm not ready.</li>
+        <li><span class="eft-pt">Side of eye</span> Who am I to put this out there.</li>
+        <li><span class="eft-pt">Under eye</span> All this fear of being judged.</li>
+        <li><span class="eft-pt">Under nose</span> What if no one comes.</li>
+        <li><span class="eft-pt">Chin</span> This resistance in my body, right now.</li>
+        <li><span class="eft-pt">Collarbone</span> I've been holding back for so long.</li>
+        <li><span class="eft-pt">Under arm</span> It has felt safer to stay small.</li>
+      </ul>
+      <div class="section-h">Round two, stepping into it</div>
+      <ul class="eft-list">
+        <li><span class="eft-pt">Top of head</span> But I'm allowed to be seen.</li>
+        <li><span class="eft-pt">Eyebrow</span> What I built is real, and it's mine.</li>
+        <li><span class="eft-pt">Side of eye</span> It doesn't have to be perfect to be powerful.</li>
+        <li><span class="eft-pt">Under eye</span> My people are waiting for exactly what I carry.</li>
+        <li><span class="eft-pt">Under nose</span> I choose to go, even with the fear.</li>
+        <li><span class="eft-pt">Chin</span> Being seen by my people is safe. It's homecoming.</li>
+        <li><span class="eft-pt">Collarbone</span> I'm ready to open my doors.</li>
+        <li><span class="eft-pt">Under arm</span> I'm proud of what I've built, and I'm going live.</li>
+      </ul>
+      <div class="body-copy">
+        <p>Take a big breath in. And let it go. Notice how you feel now. Lighter, maybe. A little more ready. Tap through it again any time the fear comes back up.</p>
+      </div>`},
+    {id:"todo", label:"Today's To-Do", icon:"\u2713", content:`
+      <div class="body-copy">
+        <p>Everything for Day 6 in one place. Keep it simple. Check each off as you go.</p>
+      </div>
+      <div class="todo-list">
+        <label class="todo-item"><input type="checkbox" data-todo="d6-t1"><span class="todo-box"></span><span class="todo-text">Watch the Day 6 video</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d6-t2"><span class="todo-box"></span><span class="todo-text">Get your Start Here going and share it in the community</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d6-t3"><span class="todo-box"></span><span class="todo-text">Drop one micro offer you already have into a classroom</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d6-t4"><span class="todo-box"></span><span class="todo-text">Do the going-live hypnosis when it's here</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d6-t5"><span class="todo-box"></span><span class="todo-text">Tap through the EFT round if the fear comes up</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d6-t6"><span class="todo-box"></span><span class="todo-text">When you're ready, run the checklist and open your doors</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d6-t7"><span class="todo-box"></span><span class="todo-text">Come share it, whenever that day comes for you</span></label>
+      </div>
+      <div class="share-note">When you cross that line, come <a href="https://www.skool.com/embody-wealth?c=60932eb0c32f408c8853873d5dfe35f9&s=newest&fl=" target="_blank" rel="noopener">tell us your community is live</a> and drop the link. Let us be the first through your doors to celebrate you. I cannot wait to see what you've birthed, whenever that day comes.</div>
+      <div class="sig">I believe in you. To living our dreams. \u2014 Aurailia \u2729</div>`}
+  ]
+};
+
 /* ---- WELCOME (Day 0) — the doorway before the path begins ---- */
 const WELCOME = {
   n:0, name:"Welcome", title:"Welcome In", isWelcome:true,
@@ -1317,7 +1443,7 @@ const STORE_KEY = "skool_build21_progress";
    2 = Days 1-2 unlocked
    ...up to 21 = all days unlocked
    ========================================================= */
-const RELEASED_DAYS = 5;
+const RELEASED_DAYS = 6;
 
 function isLocked(n){ return n>0 && n>RELEASED_DAYS; }
 
