@@ -1592,6 +1592,61 @@ PHASES[1].days[0] = {
   ]
 };
 
+
+/* ---- Day 9 — Cross-Promote and Link to Upgrade ---- */
+PHASES[1].days[1] = {
+  n:9, name:"Cross-Promote and Link",
+  title:"Cross-Promote and Link to Upgrade",
+  sub:"Use links to guide people around your community and toward your paid door.",
+  loom:"LOOM_PLACEHOLDER",
+  tabs:[
+    {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
+      <div class="body-copy">
+        <p>Hello beautiful souls. Today we do something that quietly turns free members into paid ones, and almost nobody does it on purpose.</p>
+        <p class="lead">It's called cross-promotion, and it just means using links to guide people around your community. Instead of hoping people stumble onto your best stuff, you gently point them to it, and some of those points lead to your paid door.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">Watch me do this on screen</div>
+        <p>In the video I'll actually show you how to do this inside Skool, how to grab the link to a lesson, a classroom, or a post, and drop it wherever you want it. It's easier than you think, and once you see it, you'll use it everywhere.</p>
+      </div>
+      <div class="section-h">The move that drives upgrades</div>
+      <div class="body-copy">
+        <p>Here's the heart of it. Say you just added something new to a premium classroom, a fresh hypnosis, a new training, a tool. You make a post about it in your feed. Something warm and real, like, I just dropped a new practice inside, come take a look. And you put a link on that post that goes straight to that premium classroom.</p>
+        <p>Now here's the magic. When a free member clicks that link, it takes them right to the paid content, where they hit the gentle "this is locked, upgrade to unlock" moment. They came for the thing you posted about, and they landed at your door. You didn't chase them. You didn't push. You let their own curiosity walk them there.</p>
+      </div>
+      <div class="pullquote"><p>You're not pushing anyone to upgrade. You're revealing what's waiting, and letting the curiosity do the rest.</p></div>
+      <div class="section-h">Leave a breadcrumb trail</div>
+      <div class="body-copy">
+        <p>Do this everywhere, gently. At the end of a free lesson, link to a related premium one. In a post, link to the classroom it connects to. Think of it as leaving breadcrumbs through your community, so people are always one curious click away from seeing what's behind the paid door. Every free member who keeps clicking deeper is getting closer to a yes.</p>
+      </div>
+      <div class="section-h">Link free to free, too</div>
+      <div class="body-copy">
+        <p>This isn't only about upgrades. Cross-link your free content too, so people go deeper and stay engaged. Your Start Here can point to your micro offer. A post can point to a classroom. The more your people move around and find value, the more they trust you, and an engaged free member is exactly who upgrades later. Keep them moving, keep them warm.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">Keep it in your frequency</div>
+        <p>None of this is a hard sell. It's not pushy, and it shouldn't feel that way. You're simply making your best work easy to find and letting people feel the pull of what's possible. When someone upgrades because they got curious and felt the value, it's a natural yes, and those are the members who stay. That's the magnetic way to do this.</p>
+      </div>
+      <div class="section-h">Keep building your free side</div>
+      <div class="body-copy">
+        <p>And remember the commitment for this week. Keep filling your free classrooms, your Start Here, your micro offer, your library, so they're ready by the end of the week. Cross-promotion works best when there's real, warm content to link people to. Keep going, one thing at a time.</p>
+      </div>`},
+    {id:"todo", label:"Today's To-Do", icon:"\u2713", content:`
+      <div class="body-copy">
+        <p>Today, put one link to work and keep building. Check each off as you go.</p>
+      </div>
+      <div class="todo-list">
+        <label class="todo-item"><input type="checkbox" data-todo="d9-t1"><span class="todo-box"></span><span class="todo-text">Watch the Day 9 video</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d9-t2"><span class="todo-box"></span><span class="todo-text">Make a post about something in a paid classroom, with a link to it</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d9-t3"><span class="todo-box"></span><span class="todo-text">Add one link from a free lesson or post to related content</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d9-t4"><span class="todo-box"></span><span class="todo-text">Keep building your free classrooms toward finishing this week</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d9-t5"><span class="todo-box"></span><span class="todo-text">Share how the cross-promotion felt in the community</span></label>
+      </div>
+      <div class="share-note">Come <a href="https://www.skool.com/embody-wealth?c=60932eb0c32f408c8853873d5dfe35f9&s=newest&fl=" target="_blank" rel="noopener">share in the community</a> how it felt to add your first cross-promotion link, and how your free classrooms are coming along. We're cheering you on.</div>
+      <div class="sig">I believe in you. To living our dreams. \u2014 Aurailia \u2729</div>`}
+  ]
+};
+
 /* ---- WELCOME (Day 0) — the doorway before the path begins ---- */
 const WELCOME = {
   n:0, name:"Welcome", title:"Welcome In", isWelcome:true,
@@ -1633,7 +1688,7 @@ const STORE_KEY = "skool_build21_progress";
    2 = Days 1-2 unlocked
    ...up to 21 = all days unlocked
    ========================================================= */
-const RELEASED_DAYS = 8;
+const RELEASED_DAYS = 9;
 
 function isLocked(n){ return n>0 && n>RELEASED_DAYS; }
 
