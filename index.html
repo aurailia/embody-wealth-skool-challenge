@@ -1647,6 +1647,62 @@ PHASES[1].days[1] = {
   ]
 };
 
+
+/* ---- Day 10 — Make It Yours: The Artifact Training ---- */
+PHASES[1].days[2] = {
+  n:10, name:"Make It Yours",
+  title:"Make It Yours: The Artifact Training",
+  sub:"Rebrand my artifacts as your own, or create new ones, all through Claude. No code.",
+  loom:"LOOM_PLACEHOLDER",
+  tabs:[
+    {id:"teaching", label:"The Teaching", icon:"\u2726", content:`
+      <div class="body-copy">
+        <p>Hello beautiful souls. Today is one of my favourites, because this is the thing that makes your community different from everyone else's. Today you learn how to make your own artifacts.</p>
+        <p class="lead">An artifact is an interactive tool. A quiz, a portal, a tracker, a little course, a workbook that actually does something when someone clicks through it. The kind of thing that makes a member go, wow, this is special. And the beautiful part: you don't need to code, or be technical at all. You just describe what you want, and Claude builds it.</p>
+      </div>
+      <div class="section-h">Two ways to get your own artifacts</div>
+      <div class="body-copy">
+        <p>There are two paths, and I'll show you both. The first, and easiest, is rebranding. You take an artifact I've already made and make it yours, new colours, new name, your niche, your words. The second is creating from scratch, starting with an idea and having Claude build something new. We start with rebranding, because it gives you a beautiful result fast.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">Watch me do this on screen</div>
+        <p>In the video I take my Wealth Queen Archetype Quiz, the one many of you have already played with, and turn it into something completely different, for a completely different niche, in just a few minutes. Watch how simple it is.</p>
+      </div>
+      <div class="section-h">The rebrand path</div>
+      <div class="body-copy">
+        <p>Here's how rebranding works. You give Claude the artifact, then you tell it what to change. You might say: take this quiz and rebrand it for a yoga teacher, change the colours to soft earthy greens, rename it the Yoga Archetype Quiz, and change the archetypes to types of yoga practitioners. And Claude does it. It hands you back a brand new quiz that looks and feels polished, but it's for a totally different world.</p>
+        <p>You can change anything. The name, the colours, the fonts, the words, the questions, the results, the whole theme. If you can say it, Claude can change it. No code, no tech headache. You describe, Claude builds.</p>
+      </div>
+      <div class="pullquote"><p>If you can say it, Claude can change it. You describe what you want, and it hands you back a polished tool that's uniquely yours.</p></div>
+      <div class="section-h">The create-from-scratch path</div>
+      <div class="body-copy">
+        <p>Once you're comfortable rebranding, you can go further and create from scratch. Here you start with an idea instead of an existing file. You might say: I want a simple quiz that helps my people discover their money block, with five questions and four results, in these colours, with this vibe. And Claude builds it from nothing. Start with rebranding to get your confidence, then create from scratch when you're ready to dream something up.</p>
+      </div>
+      <div class="notice">
+        <div class="notice-label">Why this matters for your business</div>
+        <p>These artifacts become real assets. A quiz can be your free lead magnet that pulls people into your world. A tracker or portal can be a premium draw, the special thing people upgrade to get. A workbook can be your micro offer. Every artifact you make is another reason for someone to join you, engage, and upgrade. This is the layer most communities will never have, beautiful, interactive, branded tools that feel high-value and completely yours. And now you can make them yourself, any time, just by describing what you're imagining.</p>
+      </div>
+      <div class="section-h">Keep building your free side</div>
+      <div class="body-copy">
+        <p>The commitment for this week still stands. Keep finishing your free classrooms, your Start Here, your micro offer, your library. An artifact can be a gorgeous addition to any of those, so as you practice today, think about where a little interactive tool might live. But finish the basics first. Free side complete by the end of the week, then artifacts are the sprinkle on top.</p>
+      </div>`},
+    {id:"todo", label:"Today's To-Do", icon:"\u2713", content:`
+      <div class="body-copy">
+        <p>Today, play with rebranding one artifact and keep building. Check each off as you go.</p>
+      </div>
+      <div class="todo-list">
+        <label class="todo-item"><input type="checkbox" data-todo="d10-t1"><span class="todo-box"></span><span class="todo-text">Watch the Day 10 video</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d10-t2"><span class="todo-box"></span><span class="todo-text">Take one of my artifacts and ask Claude to rebrand it for your niche</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d10-t3"><span class="todo-box"></span><span class="todo-text">Change the colours, name, and words so it feels like yours</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d10-t4"><span class="todo-box"></span><span class="todo-text">Think about where an artifact could live in your community</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d10-t5"><span class="todo-box"></span><span class="todo-text">Keep finishing your free classrooms this week</span></label>
+        <label class="todo-item"><input type="checkbox" data-todo="d10-t6"><span class="todo-box"></span><span class="todo-text">Show us what you made in the community</span></label>
+      </div>
+      <div class="share-note">Come <a href="https://www.skool.com/embody-wealth?c=60932eb0c32f408c8853873d5dfe35f9&s=newest&fl=" target="_blank" rel="noopener">show us your rebranded artifact</a>. Seeing what you create is one of my favourite parts of all of this.</div>
+      <div class="sig">I believe in you. To living our dreams. \u2014 Aurailia \u2729</div>`}
+  ]
+};
+
 /* ---- WELCOME (Day 0) — the doorway before the path begins ---- */
 const WELCOME = {
   n:0, name:"Welcome", title:"Welcome In", isWelcome:true,
@@ -1688,7 +1744,7 @@ const STORE_KEY = "skool_build21_progress";
    2 = Days 1-2 unlocked
    ...up to 21 = all days unlocked
    ========================================================= */
-const RELEASED_DAYS = 9;
+const RELEASED_DAYS = 10;
 
 function isLocked(n){ return n>0 && n>RELEASED_DAYS; }
 
